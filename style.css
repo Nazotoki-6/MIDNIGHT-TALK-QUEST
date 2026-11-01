@@ -356,3 +356,11 @@ html { -webkit-text-size-adjust:100%; }
 @media (prefers-reduced-motion:reduce) {
  .topic-tile,.topic-tile:nth-child(n) { animation:none!important; transition:none!important; }
 }
+
+/* v33: explicit lexical wrapping; no partial phrase clipping */
+.tileQuestion,.topic-tile .tileQuestion{word-break:normal!important;overflow-wrap:normal!important;text-wrap:wrap!important;overflow:visible!important;}
+.tileQuestion .meaning-unit{display:inline-block!important;white-space:nowrap!important;max-width:none!important;vertical-align:baseline;}
+.topic-tile,.topic-tile:nth-child(n){overflow:visible!important;height:auto!important;min-height:225px!important;}
+@media(min-width:701px) and (max-width:1050px) and (orientation:landscape){
+ .tileQuestion,.topic-tile .tileQuestion{font-size:clamp(12px,1.35vw,15px)!important;}
+}

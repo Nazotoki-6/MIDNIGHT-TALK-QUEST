@@ -122,30 +122,39 @@ function newBatch(){
 // not a forced line break; each phrase remains intact on wide and narrow layouts.
 const DISPLAY_PHRASES = ["テンパイ即リーチ派？ |それとも|ダマテン派？", "一晩だけ|プロ雀士に|弟子入りできるなら|誰？", "この4人で|一番「勝負強い」のは|誰？", "麻雀は運と実力、|何対何だと思う？", "4人の打ち筋を|それぞれ|一言で表すなら？", "一番怖いリーチを|かけるのは誰？", "一生に一度だけ|必ずアガれるなら、|どの役満？", "いちばん悔しかった|放銃は？", "点数より|トップにこだわる？", "麻雀で一番|いらないと思う|ルールは？", "リーチ後の|一発ツモと役満、|どっちが興奮する？", "麻雀の読みは|どこまで信じられる？", "誰か1人と|ペア麻雀するなら|誰？", "ラス目の親、|オーラスで|何を狙う？", "一番「顔に出る」|タイプは誰？", "麻雀の神様に|質問を一つだけ|できるなら？", "4人の麻雀大会に|賞品を出すなら？", "SNSで話題になる|ニュースと|テレビのニュース、|どっちを信用する？", "最近気になった|新商品や|新サービスは？", "AIに今の仕事を|どれくらい任せたい？", "物価が上がって|一番困った|買い物は？", "最近見たニュースで|一番驚いたものは？", "ニュースを1つだけ|毎日追うなら|何の分野？", "宇宙旅行が|100万円になったら|行く？", "現金のない社会に|なっても困らない？", "ネットで拡散した|情報、|どこまで信じる？", "日本がこれから|一番力を入れるべき|ことは？", "自動運転だけの|社会になったら？", "今の時代、|家を買う？|借りる？", "AIとプロ雀士が|対決したら|どちらを応援する？", "最近の|スポーツニュースで|気になった選手は？", "子どもの頃、|友達の家で|一番盛り上がった|遊びは？", "子どもの頃に|一番遊んだ|ゲームは？", "学生時代の自分に|1つ言うなら？", "4人で一番笑った|出来事は何？", "昔と性格が|一番変わったのは|誰？", "懐かしい携帯電話|といえば何？", "今聴いても|テンションが上がる|平成の曲は？", "学生時代に流行った|遊びを今やるなら？", "昔好きだった|漫画・アニメの|最高傑作は？", "人生で一度だけ|戻れるなら|何歳？", "昔の自分と|今の自分、|どちらがモテそう？", "一年間無料で|住めるなら、|都会の高級|マンションと|海辺の一軒家|どっち？", "過去に10分|戻れる能力と|未来を10分|見られる能力、|どっち？", "1億円もらえる|代わりにスマホを|一生使えない。|受け取る？", "一生ラーメン無料と|一生焼肉無料、|どっち？", "毎日3時間睡眠で|元気か、|毎日好きな夢を|見られるか？", "無人島に4人で|行くなら、|それぞれの役割は？", "10億円を独り占めか、|親しい人10人に|1億円ずつか？", "一生ウソが|つけないか、|人のウソを全部|見抜けるか？", "一生行ける旅先が|国内だけか、|海外だけか？", "自分の寿命が|分かるか、|知らないままで|いるか？", "4人で会社を|作るなら|社長は誰？", "4人で10年後に|集まるなら、|どんな場所がいい？", "20歳の自分に|恋愛アドバイス|するなら？", "第一印象と|付き合ってからの|ギャップは大切？", "人生で一番|勇気を出した|告白や決断は？", "付き合う相手と|趣味は同じほうが|いい？", "40歳までに|達成したいことは？", "若い頃と今で|お金の使い方は|どう変わった？", "友達として|一番ありがたい|ことって何？", "一緒に旅行して|楽しい人の|条件は？", "自分にとって|理想の休日は？", "最近「大人に|なったな」と|思った瞬間は？", "異性の声で|ドキッとするのは|どんな瞬間？", "大人になってから|「ちょっと色気|あるな」と思う|仕草は？", "デートで手をつなぐ|タイミング、|昔と今で変わった？", "キスは雰囲気重視？|タイミング重視？", "恋人と2人きりの|旅行なら|温泉とリゾート、|どっち？", "異性に|「今日はちょっと|攻めてるな」と|感じる服装は？", "色気って|顔・声・仕草・会話の|どこに出る？", "恋愛ドラマの|濃厚なキスシーン、|直視できる？", "好きな人の前で|一番緊張した|出来事は？", "恋人に甘える派？|甘えられる派？", "セクシーさと|かわいさ、|惹かれるのは|どっち？", "初デートで|家に誘われたら、|どう受け取る？", "思わず目を|そらしたくなるほど|照れた恋愛の|瞬間は？", "パートナーに|言われたら照れる|褒め言葉は？", "大人の恋愛で|「これは反則」と|思う魅力は？", "一緒に映画を|見るとき、|恋愛シーンで|気まずくなる？"];
 // Japanese-word-aware wrapping: keep meaning units together without altering question text.
-const wordSegmenter = typeof Intl !== 'undefined' && Intl.Segmenter
+// v33: Use Japanese lexical units, never arbitrary 5-9 character chunks.
+const wordSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
   ? new Intl.Segmenter('ja', {granularity:'word'}) : null;
 function readableParts(text){
   if(!wordSegmenter) return [text];
-  const tokens=Array.from(wordSegmenter.segment(text), v=>v.segment);
-  const parts=[];let buf='';
-  // Build 5–9 character groups on Japanese word boundaries.
-  for(const t of tokens){
-    if(!t) continue;
-    if(buf && (Array.from(buf+t).length>9 || /[、。！？?!]$/.test(buf))){
-      parts.push(buf);buf='';
+  const words=Array.from(wordSegmenter.segment(text), s=>s.segment);
+  const result=[];
+  let current='';
+  const joinsPrevious=/^[はがをにへでとものやかねよぞさなわばもやからまでよりでもってためほどなどだけくらいぐらいこそすら]$/;
+  for(let i=0;i<words.length;i++){
+    const word=words[i];
+    if(!word)continue;
+    // Attach particles, punctuation and auxiliary endings to the preceding phrase.
+    if(!current){current=word;continue;}
+    if(/^[、。！？?!，．：:）】」』]+$/.test(word) || joinsPrevious.test(word) || /^[ぁ-ん]{1,2}$/.test(word)){
+      current+=word;continue;
     }
-    buf+=t;
-    if(/[、。！？?!]$/.test(buf)){parts.push(buf);buf='';}
+    // Adjectives and negation attach when the phrase is short.
+    if(current.length<=4 && /^[ぁ-ん]{1,4}$/.test(word)){current+=word;continue;}
+    // Prefer clauses of up to about 10 characters; never break a lexical word itself.
+    if(Array.from(current+word).length<=10 && !/[、。！？?!]$/.test(current)){
+      current+=word;continue;
+    }
+    result.push(current); current=word;
   }
-  if(buf)parts.push(buf);
-  return parts;
+  if(current)result.push(current);
+  return result;
 }
 function setReadableQuestion(el, topic){
   el.replaceChildren();
   for(const part of readableParts(topic.q)){
     const span=document.createElement('span');
-    span.className='meaning-unit';
-    span.textContent=part;
+    span.className='meaning-unit';span.textContent=part;
     el.append(span);
   }
 }
