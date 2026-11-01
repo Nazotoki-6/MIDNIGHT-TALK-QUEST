@@ -192,3 +192,11 @@ select{background:#121b3d;border:3px solid #a8c8ff;border-radius:3px;min-width:2
   .topic-tile,.topic-tile:nth-child(n){min-height:240px;padding:11px 8px 10px;}
   .tileQuestion{font-size:12px;line-height:1.55;}
 }
+
+/* v19 BGM player */
+.music-panel{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:12px auto 18px;padding:10px 14px;max-width:550px;background:#101b3dc9;border:2px solid #6ce2cd;border-radius:6px;color:#e9fff7;box-shadow:3px 4px 0 #060b1a}
+.music-toggle{cursor:pointer;border:2px solid #83e6d6;border-radius:4px;background:#20345e;color:#fff4be;font-weight:900;padding:9px 14px;min-height:40px}
+.music-toggle[aria-pressed=true]{background:#295b4f}
+.music-panel label,.music-panel #musicState{font-weight:700;font-size:12px}
+.music-panel input{width:115px;accent-color:#82e8d3}
+@media(max-width:380px){.music-panel{gap:8px;padding:9px 6px}.music-panel input{width:90px}}

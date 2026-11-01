@@ -93,3 +93,6 @@ function fitAllCards(){requestAnimationFrame(()=>{document.querySelectorAll('.to
 window.addEventListener('resize',()=>{clearTimeout(window.__topicResizeTimer);window.__topicResizeTimer=setTimeout(fitAllCards,80);});
 newBatch();
 fitAllCards();
+
+// v19 original soundtrack. Playback starts only after the user presses the button.
+(()=>{const audio=document.getElementById('bgm');const toggle=document.getElementById('musicToggle');const volume=document.getElementById('musicVolume');const status=document.getElementById('musicState');if(!audio||!toggle||!volume)return;audio.volume=Number(volume.value)/100;volume.addEventListener('input',()=>{audio.volume=Number(volume.value)/100;});const update=()=>{const playing=!audio.paused;toggle.setAttribute('aria-pressed',String(playing));toggle.textContent=playing?'♫ BGM停止':'♫ BGM再生';status.textContent=playing?'再生中':'停止中';};toggle.addEventListener('click',async()=>{if(audio.paused){try{await audio.play();}catch(e){status.textContent='再生できませんでした';}}else{audio.pause();}update();});audio.addEventListener('play',update);audio.addEventListener('pause',update);})();
