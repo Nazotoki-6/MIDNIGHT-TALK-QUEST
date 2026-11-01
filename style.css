@@ -211,3 +211,121 @@ select{background:#121b3d;border:3px solid #a8c8ff;border-radius:3px;min-width:2
 @keyframes reaction-bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-13px)}70%{transform:translateY(2px)}}
 @media(max-width:560px){.talk-timer{gap:7px;padding:8px}.talk-timer output{font-size:20px}.reaction-area img{height:62px;width:55px}}
 @media(prefers-reduced-motion:reduce){.reaction-area img.reaction-bounce{animation:none}}
+
+/* New 100 topics: natural Japanese wrapping without unbreakable chunks */
+.tileQuestion.news-topic{word-break:normal;overflow-wrap:anywhere;line-break:strict;text-wrap:pretty;}
+
+/* v22: all 500 topics use natural Japanese line breaking, no clipped text */
+.cards{grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:14px;min-width:0;}
+.topic-tile,.topic-tile:nth-child(n){min-width:0;width:100%;height:auto!important;min-height:255px;overflow:visible;display:flex;flex-direction:column;padding:16px 12px 14px;gap:10px;}
+.tileQuestion,.topic-tile .tileQuestion{
+ display:block;flex:1 0 auto;min-width:0;width:100%;height:auto;
+ margin:0;white-space:normal;line-height:1.6;
+ text-wrap:balance;word-break:normal;line-break:strict;
+ overflow-wrap:anywhere;overflow:visible;
+ font-size:clamp(15px,1.3vw,19px);letter-spacing:0;
+}
+.tileQuestion .phrase-unit{display:contents;white-space:normal;}
+.tileNo,.tileCategory,.tileFoot{flex-shrink:0}
+.tileCategory{white-space:normal;overflow:visible;text-overflow:clip;}
+.tileFoot{margin-top:auto;}
+@media (min-width:801px) and (max-width:1199px){.cards{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (max-width:800px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));}.tileQuestion,.topic-tile .tileQuestion{font-size:clamp(14px,2vw,18px);}}
+@media (max-width:560px){.cards{gap:9px}.topic-tile,.topic-tile:nth-child(n){padding:12px 9px 11px;min-height:224px}.tileQuestion,.topic-tile .tileQuestion{font-size:clamp(13px,3.5vw,16px);line-height:1.55;}}
+@media (max-width:370px){.tileQuestion,.topic-tile .tileQuestion{font-size:13px;}}
+
+/* v23: reading-first layout; remove crowded two-column smartphone cards */
+.cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:1450px}
+.topic-tile,.topic-tile:nth-child(n){min-width:0;max-width:100%;min-height:220px;padding:17px 17px 14px;overflow:visible}
+.tileQuestion,.topic-tile .tileQuestion{font-size:clamp(17px,1.4vw,20px);line-height:1.7;text-wrap:pretty;word-break:normal;overflow-wrap:break-word;line-break:strict;white-space:normal;hyphens:none;letter-spacing:0;}
+@media(max-width:1450px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1040px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.cards{grid-template-columns:minmax(0,1fr);gap:12px}.topic-tile,.topic-tile:nth-child(n){min-height:145px;padding:13px 18px 12px;gap:7px}.tileQuestion,.topic-tile .tileQuestion{font-size:18px;line-height:1.65}.tileFoot{margin-top:5px}}
+@media(max-width:360px){.tileQuestion,.topic-tile .tileQuestion{font-size:16px}}
+
+/* v24: 読みやすさ優先。カードを十分な横幅にして無理な改行を防ぐ */
+.cards{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:16px!important;
+  max-width:1180px!important;
+  width:100%!important;
+  margin-inline:auto!important;
+  align-items:stretch;
+}
+.topic-tile,.topic-tile:nth-child(n){
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  min-width:0!important;max-width:100%!important;
+  min-height:170px!important;height:auto!important;max-height:none!important;
+  padding:16px 22px!important;overflow:visible!important;gap:8px!important;
+}
+.tileQuestion,.topic-tile .tileQuestion{
+  flex:1 0 auto!important;width:100%!important;
+  display:block!important;margin:8px 0!important;
+  white-space:normal!important;text-wrap:pretty!important;
+  font-size:19px!important;line-height:1.65!important;
+  letter-spacing:0!important;word-break:normal!important;
+  overflow-wrap:break-word!important;line-break:strict!important;
+  hyphens:none!important;overflow:visible!important;
+}
+.tileQuestion .phrase-unit{display:contents!important}
+.tileFoot{margin-top:auto!important}
+@media(max-width:1050px){
+ .cards{grid-template-columns:minmax(0,1fr)!important;max-width:760px!important}
+ .topic-tile,.topic-tile:nth-child(n){padding:14px 20px!important;min-height:135px!important}
+}
+@media(max-width:560px){
+ .cards{gap:12px!important}
+ .topic-tile,.topic-tile:nth-child(n){padding:12px 14px!important}
+ .tileQuestion,.topic-tile .tileQuestion{font-size:17px!important;line-height:1.6!important}
+}
+
+/* v25: Four cards across and two rows on PC and landscape tablets. */
+.wrap{max-width:1440px!important; width:100%!important; margin-inline:auto!important}
+.cards{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;
+  width:100%!important;
+  max-width:1360px!important;
+  align-items:stretch!important;
+}
+.topic-tile,.topic-tile:nth-child(n){
+  min-width:0!important;width:100%!important;min-height:218px!important;
+  padding:14px 12px!important;gap:8px!important;
+  overflow:visible!important;
+}
+.tileQuestion,.topic-tile .tileQuestion{
+  width:100%!important;max-width:100%!important;
+  font-size:clamp(13px,1.25vw,18px)!important;
+  line-height:1.55!important;overflow:visible!important;
+  word-break:normal!important;overflow-wrap:break-word!important;
+  white-space:normal!important;
+}
+@media (min-width:701px) and (max-width:1100px){
+  .cards{gap:9px!important}
+  .topic-tile,.topic-tile:nth-child(n){padding:11px 7px!important;min-height:215px!important}
+  .tileQuestion,.topic-tile .tileQuestion{font-size:clamp(12px,1.5vw,15px)!important;line-height:1.55!important}
+  .tileCategory{font-size:10px!important}
+}
+@media(max-width:700px){
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .topic-tile,.topic-tile:nth-child(n){padding:12px 10px!important;min-height:205px!important}
+  .tileQuestion,.topic-tile .tileQuestion{font-size:clamp(13px,3.5vw,17px)!important;line-height:1.55!important}
+}
+
+/* v26: honor meaning-unit boundaries; never split Japanese compound words */
+.tileQuestion .meaning-unit{
+ display:inline-block!important;
+ white-space:nowrap!important;
+ max-width:100%!important;
+ vertical-align:baseline;
+}
+.tileQuestion,.topic-tile .tileQuestion{
+ word-break:normal!important;
+ overflow-wrap:normal!important;
+ line-break:strict!important;
+ text-wrap:wrap!important;
+}
+/* Keep four columns on wide displays and landscape tablets. */
+@media (min-width:701px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
