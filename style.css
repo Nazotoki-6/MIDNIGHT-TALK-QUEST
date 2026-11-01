@@ -200,3 +200,14 @@ select{background:#121b3d;border:3px solid #a8c8ff;border-radius:3px;min-width:2
 .music-panel label,.music-panel #musicState{font-weight:700;font-size:12px}
 .music-panel input{width:115px;accent-color:#82e8d3}
 @media(max-width:380px){.music-panel{gap:8px;padding:9px 6px}.music-panel input{width:90px}}
+
+/* v20 interactive additions */
+.sfx-panel{text-align:center;margin:8px auto}.sfx-panel button{background:#1c2d57;color:#e4fdf6;border:2px solid #80e7d0;padding:8px 13px;cursor:pointer;border-radius:3px}
+.talk-timer{margin:16px auto 12px;padding:12px;border:2px solid #708bd0;background:#15254a;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;color:#faf4de}
+.talk-timer label{font-size:13px;font-weight:bold}.talk-timer select{background:#101d3a;color:#fff;border:1px solid #89f1d5}.talk-timer output{font-variant-numeric:tabular-nums;font-size:23px;min-width:75px;font-weight:900;color:#9ef7da}.talk-timer button{cursor:pointer;border:2px solid #b4c7fa;background:#233969;color:#fff;padding:7px 9px;font-size:13px;font-weight:bold}
+.reaction-area{display:flex;align-items:center;justify-content:center;gap:14px;background:#d3d9e8;border:2px solid #26396b;padding:8px;margin:12px 0;color:#111d39;font-weight:900;font-size:14px;min-height:88px}
+.reaction-area img{height:76px;width:70px;object-fit:contain;image-rendering:pixelated;transform-origin:bottom center}
+.reaction-area img.reaction-bounce{animation:reaction-bounce .5s ease-out}
+@keyframes reaction-bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-13px)}70%{transform:translateY(2px)}}
+@media(max-width:560px){.talk-timer{gap:7px;padding:8px}.talk-timer output{font-size:20px}.reaction-area img{height:62px;width:55px}}
+@media(prefers-reduced-motion:reduce){.reaction-area img.reaction-bounce{animation:none}}

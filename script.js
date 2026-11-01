@@ -96,3 +96,29 @@ fitAllCards();
 
 // v19 original soundtrack. Playback starts only after the user presses the button.
 (()=>{const audio=document.getElementById('bgm');const toggle=document.getElementById('musicToggle');const volume=document.getElementById('musicVolume');const status=document.getElementById('musicState');if(!audio||!toggle||!volume)return;audio.volume=Number(volume.value)/100;volume.addEventListener('input',()=>{audio.volume=Number(volume.value)/100;});const update=()=>{const playing=!audio.paused;toggle.setAttribute('aria-pressed',String(playing));toggle.textContent=playing?'♫ BGM停止':'♫ BGM再生';status.textContent=playing?'再生中':'停止中';};toggle.addEventListener('click',async()=>{if(audio.paused){try{await audio.play();}catch(e){status.textContent='再生できませんでした';}}else{audio.pause();}update();});audio.addEventListener('play',update);audio.addEventListener('pause',update);})();
+
+
+/* v20: short original synthesized UI sounds, character reactions and talk timer */
+(()=>{
+let soundOn=true,ctx=null;
+const sfxButton=document.getElementById('sfxToggle');
+const ensureAudio=()=>{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;if(!ctx)ctx=new AC();if(ctx.state==='suspended')ctx.resume();return ctx;};
+function beep(freq=520,dur=.09,type='square',gain=.034,delay=0){if(!soundOn)return;try{const a=ensureAudio();if(!a)return;const osc=a.createOscillator(),v=a.createGain(),t=a.currentTime+delay;osc.type=type;osc.frequency.setValueAtTime(freq,t);v.gain.setValueAtTime(.0001,t);v.gain.exponentialRampToValueAtTime(gain,t+.012);v.gain.exponentialRampToValueAtTime(.0001,t+dur);osc.connect(v).connect(a.destination);osc.start(t);osc.stop(t+dur+.005);}catch(e){}}
+function play(type){if(type==='select'){beep(560,.08);beep(830,.12,'square',.025,.09)}else if(type==='next'){beep(380,.06);beep(480,.06,'square',.025,.07)}else if(type==='speaker'){beep(520,.08);beep(660,.08,'square',.028,.09);beep(980,.17,'triangle',.04,.2)}else if(type==='end'){beep(760,.10);beep(520,.19,'triangle',.035,.12)}}
+sfxButton.addEventListener('click',()=>{soundOn=!soundOn;sfxButton.textContent=soundOn?'♪ 効果音 ON':'♪ 効果音 OFF';sfxButton.setAttribute('aria-pressed',String(soundOn));if(soundOn)play('next');});
+const avatars=['take','kazu','taro','tsuyoshi'];const personalities=['たけ','かず','たろう','つよし'];let reactionStep=0;
+function react(message,index){const avatar=document.getElementById('reactionAvatar'),label=document.getElementById('reactionMessage');if(index==null)index=reactionStep++%4;avatar.src='assets/'+avatars[index]+'.png';avatar.alt=personalities[index];label.textContent=message;avatar.classList.remove('reaction-bounce');void avatar.offsetWidth;avatar.classList.add('reaction-bounce');}
+const originalShow=show;show=function(t){originalShow(t);react('その話、詳しく聞かせて！');stopTimer(true);};
+const originalOpenCard=openCard;openCard=function(i){play('select');originalOpenCard(i);};
+const originalBatch=newBatch;newBatch=function(){play('next');originalBatch();};
+const choose=document.getElementById('chooseSpeaker'),oldChoose=choose.onclick;
+choose.onclick=function(){play('speaker');oldChoose();const name=document.getElementById('speaker').textContent;const index=personalities.findIndex(n=>name.includes(n+'！'));react('さあ、'+(index>=0?personalities[index]:'みんな')+'の番だ！',index>=0?index:0);};
+const display=document.getElementById('timerDisplay'),select=document.getElementById('timerMinutes'),start=document.getElementById('timerStart'),reset=document.getElementById('timerReset');let remaining=0,interval=null,until=0;
+function draw(){display.textContent=Number(select.value)===0?'∞':Math.floor(remaining/60).toString().padStart(2,'0')+':'+(remaining%60).toString().padStart(2,'0');}
+function stopTimer(clear){if(interval){clearInterval(interval);interval=null;}start.textContent='▶ 開始';if(clear){remaining=Number(select.value);draw();}}
+function tick(){remaining=Math.max(0,Math.ceil((until-Date.now())/1000));draw();if(remaining===0){stopTimer(false);play('end');react('時間だよ！続けて話す？');}}
+select.onchange=()=>stopTimer(true);reset.onclick=()=>{play('next');stopTimer(true);};
+start.onclick=()=>{if(Number(select.value)===0){react('時間を気にせず、語り合おう！');return;}if(interval){remaining=Math.max(0,Math.ceil((until-Date.now())/1000));stopTimer(false);}else{if(remaining<=0)remaining=Number(select.value);until=Date.now()+remaining*1000;interval=setInterval(tick,250);}start.textContent=interval?'Ⅱ 一時停止':'▶ 再開';play('next');};
+const oldClose=close;close=function(){stopTimer(true);oldClose();};
+stopTimer(true);
+})();
