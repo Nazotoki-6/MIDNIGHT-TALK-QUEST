@@ -76,8 +76,13 @@ MARRIAGE_TOPICS.forEach((t,i)=>DATA.push({id:560+i,...t}));
 // v30: 会話が長く続くディベート40問
 const DEBATE_TOPICS=[{"cat":"ディベート","q":"麻雀で勝つには、攻めより守りを優先すべき？","sub":"【A】攻め重視 ／ 【B】守り重視","talk":["まずA「攻め重視」とB「守り重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"麻雀の強さは、短期戦より長期戦で判断すべき？","sub":"【A】短期戦も実力 ／ 【B】長期戦こそ実力","talk":["まずA「短期戦も実力」とB「長期戦こそ実力」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"リーチは早さより打点を優先するべき？","sub":"【A】早さ重視 ／ 【B】打点重視","talk":["まずA「早さ重視」とB「打点重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"麻雀に順位点は必要？","sub":"【A】必要 ／ 【B】不要","talk":["まずA「必要」とB「不要」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"麻雀のローカルルールは多いほうが楽しい？","sub":"【A】多いほうが楽しい ／ 【B】少ないほうがいい","talk":["まずA「多いほうが楽しい」とB「少ないほうがいい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"友達との麻雀に賞品は必要？","sub":"【A】あったほうがいい ／ 【B】なくていい","talk":["まずA「あったほうがいい」とB「なくていい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"旅行は予定を細かく決めるべき？","sub":"【A】計画を立てる ／ 【B】成り行きに任せる","talk":["まずA「計画を立てる」とB「成り行きに任せる」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"旅行の宿は豪華さより立地を優先すべき？","sub":"【A】豪華さ重視 ／ 【B】立地重視","talk":["まずA「豪華さ重視」とB「立地重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"4人で遊ぶなら、定番より未経験の遊びを選ぶべき？","sub":"【A】定番重視 ／ 【B】新しい遊び重視","talk":["まずA「定番重視」とB「新しい遊び重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"近所に住む友達とは、頻繁に会うほうがいい？","sub":"【A】頻繁に会いたい ／ 【B】たまに会いたい","talk":["まずA「頻繁に会いたい」とB「たまに会いたい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"親しい友達でも、連絡は用事があるときだけでいい？","sub":"【A】用事があるときだけ ／ 【B】雑談の連絡もほしい","talk":["まずA「用事があるときだけ」とB「雑談の連絡もほしい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"友達に厳しい本音を伝えるのは、優しさだと思う？","sub":"【A】伝えるのが優しさ ／ 【B】言わない優しさもある","talk":["まずA「伝えるのが優しさ」とB「言わない優しさもある」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"友人同士の旅行で、お金はきっちり割り勘にするべき？","sub":"【A】厳密に割り勘 ／ 【B】柔軟に調整","talk":["まずA「厳密に割り勘」とB「柔軟に調整」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"地元に住み続ける魅力は、外へ出る経験より大きい？","sub":"【A】地元の安心感 ／ 【B】外で得る経験","talk":["まずA「地元の安心感」とB「外で得る経験」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"懐かしいゲームは、リメイクより原作のままがいい？","sub":"【A】原作がいい ／ 【B】リメイクがいい","talk":["まずA「原作がいい」とB「リメイクがいい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"ゲームの楽しさに画質の進化は重要？","sub":"【A】重要 ／ 【B】そこまで重要ではない","talk":["まずA「重要」とB「そこまで重要ではない」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"映画は映画館より自宅で見るほうがいい？","sub":"【A】映画館 ／ 【B】自宅","talk":["まずA「映画館」とB「自宅」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"マンガは紙で集めたい？","sub":"【A】紙で集めたい ／ 【B】電子がいい","talk":["まずA「紙で集めたい」とB「電子がいい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"一度ハマった趣味は、とことん続けるべき？","sub":"【A】続けるべき ／ 【B】新しい趣味も開拓","talk":["まずA「続けるべき」とB「新しい趣味も開拓」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"SNSは人間関係を豊かにしていると思う？","sub":"【A】豊かにしている ／ 【B】疲れやすくしている","talk":["まずA「豊かにしている」とB「疲れやすくしている」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"AIを仕事に積極的に使うべき？","sub":"【A】積極的に使う ／ 【B】慎重に使う","talk":["まずA「積極的に使う」とB「慎重に使う」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"仕事選びでは、収入より自由な時間を優先すべき？","sub":"【A】収入重視 ／ 【B】自由な時間重視","talk":["まずA「収入重視」とB「自由な時間重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"転職するなら安定より挑戦を選ぶべき？","sub":"【A】安定重視 ／ 【B】挑戦重視","talk":["まずA「安定重視」とB「挑戦重視」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"週休3日と給与アップなら、社会全体でどちらを優先すべき？","sub":"【A】週休3日 ／ 【B】給与アップ","talk":["まずA「週休3日」とB「給与アップ」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"会社の飲み会は、職場の関係づくりに必要？","sub":"【A】必要 ／ 【B】不要","talk":["まずA「必要」とB「不要」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"働く場所は都会より地元の近くがいい？","sub":"【A】都会 ／ 【B】地元の近く","talk":["まずA「都会」とB「地元の近く」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"貯金は今の楽しみより優先すべき？","sub":"【A】将来のための貯金 ／ 【B】今を楽しむ支出","talk":["まずA「将来のための貯金」とB「今を楽しむ支出」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"大きな買い物は、現金一括のほうがいい？","sub":"【A】現金一括 ／ 【B】分割も活用","talk":["まずA「現金一括」とB「分割も活用」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"家を持つなら購入より賃貸を選ぶべき？","sub":"【A】購入 ／ 【B】賃貸","talk":["まずA「購入」とB「賃貸」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"お金を使うならモノより経験に使うべき？","sub":"【A】モノ ／ 【B】経験","talk":["まずA「モノ」とB「経験」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"経済ニュースを毎日見る必要はある？","sub":"【A】毎日見るべき ／ 【B】必要なときで十分","talk":["まずA「毎日見るべき」とB「必要なときで十分」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"キャッシュレスだけの生活に賛成？","sub":"【A】賛成 ／ 【B】現金も残すべき","talk":["まずA「賛成」とB「現金も残すべき」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"恋愛では、ときめきより安心感を優先するべき？","sub":"【A】ときめき ／ 【B】安心感","talk":["まずA「ときめき」とB「安心感」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"結婚相手とは、趣味が同じほうがいい？","sub":"【A】共通の趣味が大事 ／ 【B】違ってもいい","talk":["まずA「共通の趣味が大事」とB「違ってもいい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"恋人や夫婦の秘密は、どこまで共有するべき？","sub":"【A】基本的に共有 ／ 【B】個人の領域を尊重","talk":["まずA「基本的に共有」とB「個人の領域を尊重」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"恋人とのケンカは、その日のうちに解決するべき？","sub":"【A】当日中に話す ／ 【B】時間を置く","talk":["まずA「当日中に話す」とB「時間を置く」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"恋人へのサプライズは、事前に相談するより喜ばれる？","sub":"【A】サプライズ ／ 【B】事前の相談","talk":["まずA「サプライズ」とB「事前の相談」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"付き合う前の友達期間は、長いほうがいい？","sub":"【A】長いほうがいい ／ 【B】短くてもいい","talk":["まずA「長いほうがいい」とB「短くてもいい」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"夫婦や恋人でも、ひとりの休日は必要？","sub":"【A】必要 ／ 【B】一緒の時間を優先","talk":["まずA「必要」とB「一緒の時間を優先」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]},{"cat":"ディベート","q":"10年後の4人にとって、会う回数より付き合いの深さが大切？","sub":"【A】会う回数 ／ 【B】付き合いの深さ","talk":["まずA「会う回数」とB「付き合いの深さ」に分かれて理由を話そう。","そう考えるようになった体験談や実例はある？","あえて反対側の立場に立ったら、どんな主張ができる？","ほかの3人の意見を聞いて、考えが変わったところはある？"]}];
 DEBATE_TOPICS.forEach((t,i)=>DATA.push({id:590+i,...t}));
+// v36: 幼なじみ4人のための「友達なら聞きたい」15問
+const FRIEND_PICK_TOPICS = [{"cat":"友達なら聞きたい15問","theme":"男4人の本音","q":"4人の中で、小学生の頃から一番キャラが変わったのは誰？","sub":"昔と今の具体的な違いを暴露するなら？","talk":["昔と今の具体的な違いを暴露するなら？","小学生の頃はどんな性格で、何がきっかけで変わった？","ほかの3人はその変化にいつ気づいた？","本人は自分が変わったと思っている？"]},{"cat":"友達なら聞きたい15問","theme":"男4人の本音","q":"実は4人の中で、一番うらやましいと思っているのは誰？","sub":"本人の前だからこそ、理由まで聞いてみよう。","talk":["本人の前だからこそ、理由まで聞いてみよう。","性格・仕事・趣味・行動力なら、どんなところ？","学生の頃もうらやましいと思ったことはある？","逆にその人が他の誰かをうらやましいと思う部分は？"]},{"cat":"友達なら聞きたい15問","theme":"平成・思い出","q":"4人の記憶が一番食い違っていそうな事件って何？","sub":"それぞれの証言だけで真相を再現してみよう。","talk":["それぞれの証言だけで真相を再現してみよう。","最初にその出来事を覚えている人が説明してみよう。","どこで、誰が、何をしたか4人の記憶は一致する？","写真や当時の物がなくても、真相を推理できる？"]},{"cat":"友達なら聞きたい15問","theme":"究極の選択","q":"4人で1か月共同生活するとしたら、一番相部屋にしたくないのは誰？","sub":"生活習慣や昔のエピソードを理由にして選ぼう。","talk":["生活習慣や昔のエピソードを理由にして選ぼう。","生活リズム・掃除・いびきなど、何が気になりそう？","逆に同居すると楽しそうなのは誰？","全員が気持ちよく過ごすためのルールを3つ決めるなら？"]},{"cat":"友達なら聞きたい15問","theme":"経済・お金・物価","q":"4人のうち1人に100万円を預けて増やしてもらうなら、誰にする？","sub":"信頼とお金のセンスは別問題？","talk":["信頼とお金のセンスは別問題？","何を根拠にその人なら任せられると思った？","元本保証あり・なしで選ぶ相手は変わる？","預かる側になったら、最初にどんな約束をする？"]},{"cat":"友達なら聞きたい15問","theme":"地元・幼なじみ","q":"もし4人で地元に店を開くなら、何の店にして誰が店長になる？","sub":"誰が働かずに遊んでいそうかも予想しよう。","talk":["誰が働かずに遊んでいそうかも予想しよう。","店の名前と看板メニューはどうする？","たけ・かず・たろう・つよしの役割は？","子どもの頃の自分たちがその店に来たら何と言う？"]},{"cat":"友達なら聞きたい15問","theme":"大人の本音","q":"恋人や配偶者から言われたら、一番ドキッとする誘い文句は？","sub":"理想と現実の違いまで話せる範囲で語ろう。","talk":["理想と現実の違いまで話せる範囲で語ろう。","どんな場面・時間帯だと余計に照れる？","若い頃と今では、うれしい言葉が変わった？","相手を困らせない誘い方のコツは何だと思う？"]},{"cat":"友達なら聞きたい15問","theme":"恋愛・人生","q":"本当の親友なら、相手の恋愛や結婚について口出しすべき？","sub":"どこまで踏み込むのが友情なのか考えよう。","talk":["どこまで踏み込むのが友情なのか考えよう。","賛成派と反対派に分かれて理由を聞こう。","心配だから伝えた経験や、伝えられた経験はある？","どんな状況なら例外的に忠告する？"]},{"cat":"友達なら聞きたい15問","theme":"麻雀","q":"4人の中で、麻雀の実力を一番過大評価しているのは誰？","sub":"直近の対局を証拠に言い合ってみよう。","talk":["直近の対局を証拠に言い合ってみよう。","その人が得意だと思っている打ち方は？","実力を測るなら、順位・読み・守備のどれを重視する？","本人に反論の時間を与えると、どんな主張が出る？"]},{"cat":"友達なら聞きたい15問","theme":"男4人の本音","q":"夜中の3時に『本当に困っている』と連絡したら、最初に駆けつけるのは誰？","sub":"それぞれの対応を予想しよう。","talk":["それぞれの対応を予想しよう。","誰なら電話に出そうで、誰なら現場まで来そう？","過去に助けてもらった出来事はある？","無理なく助け合うための連絡ルールを決めるなら？"]},{"cat":"友達なら聞きたい15問","theme":"恋愛・結婚の本音","q":"結婚生活を経験した人と独身の人では、幸せの基準は変わると思う？","sub":"既婚・独身それぞれの立場から議論しよう。","talk":["既婚・独身それぞれの立場から議論しよう。","自由・安心・家族・趣味の優先順位は違う？","10代や20代の自分ならどう答えた？","お互いの意見で納得した部分はどこ？"]},{"cat":"友達なら聞きたい15問","theme":"恋愛・結婚の本音","q":"恋人や配偶者に隠さず話しておきたいことと、話さなくてもいいことの境界は？","sub":"プライバシーと信頼について本音で話そう。","talk":["プライバシーと信頼について本音で話そう。","金銭・交友関係・昔の出来事で線引きは変わる？","自分が聞く側と話す側で基準は同じ？","相手が安心できる伝え方ってどんなもの？"]},{"cat":"友達なら聞きたい15問","theme":"平成・思い出","q":"小学生の頃の4人に今の自分たちを見せたら、何に一番驚くと思う？","sub":"仕事・結婚・性格・変わらない習慣を挙げよう。","talk":["仕事・結婚・性格・変わらない習慣を挙げよう。","昔の夢と今の生活で、どこが違っている？","4人のうち「思ったとおり」になったのは誰？","当時の自分に今伝えたい言葉は何？"]},{"cat":"友達なら聞きたい15問","theme":"男4人の本音","q":"4人の中で、今まで一番助けられたと思っているのは誰？","sub":"普段言わない感謝を笑いながら伝えよう。","talk":["普段言わない感謝を笑いながら伝えよう。","いつ、どんな場面で助けてもらった？","助けた本人はその出来事を覚えている？","今後ほかの3人に返せることは何だろう？"]},{"cat":"友達なら聞きたい15問","theme":"地元・幼なじみ","q":"70歳になった4人が今と同じように集まっていたら、何をしていると思う？","sub":"老後の麻雀大会、旅行、近所付き合いまで想像しよう。","talk":["老後の麻雀大会、旅行、近所付き合いまで想像しよう。","何曜日の何時に、どこへ集まりそう？","70歳になっても変わっていない役割は？","その未来のために今から始めたいことは？"]}];
+FRIEND_PICK_TOPICS.forEach((t,i)=>DATA.push({id:630+i,...t}));
+
 function deepQuestions(t){if(t.talk)return t.talk;const variants=TALK_PATHS[t.cat]||TALK_PATHS['ニュース']; const a=variants[t.id%variants.length];return t.id < INITIAL_COUNT ? [t.sub,...a.slice(0,3)] : a;}
-const $=id=>document.getElementById(id);const KEY='otoko-talk-retro-v18';let seen=[];try{seen=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{}let batch=[];let active=null;let hiddenNo=0;const CATS=['すべて','麻雀','ニュース','平成・思い出','究極の選択','恋愛・人生','ちょいエロ','男4人の本音','4人の新企画','もし◯◯なら誰？','大人の本音','経済・お金・物価','政治・社会','AI・科学・未来','話題のニュース','仕事・暮らし','地元・幼なじみ','恋愛・結婚の本音','ディベート'];const names=['たけ','かず','たろう','つよし'];function allowed(){let cat=$('category').value;return DATA.filter(t=>(cat==='すべて'||t.cat===cat))}function save(){try{localStorage.setItem(KEY,JSON.stringify(seen.slice(-600)))}catch{}}function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}// 同じ8枚にジャンルや近い話題が重ならないようにする。
+const $=id=>document.getElementById(id);const KEY='otoko-talk-retro-v18';let seen=[];try{seen=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{}let batch=[];let active=null;let hiddenNo=0;const CATS=['すべて','麻雀','ニュース','平成・思い出','究極の選択','恋愛・人生','ちょいエロ','男4人の本音','4人の新企画','もし◯◯なら誰？','大人の本音','経済・お金・物価','政治・社会','AI・科学・未来','話題のニュース','仕事・暮らし','地元・幼なじみ','恋愛・結婚の本音','ディベート','友達なら聞きたい15問'];const names=['たけ','かず','たろう','つよし'];function allowed(){let cat=$('category').value;return DATA.filter(t=>(cat==='すべて'||t.cat===cat))}function save(){try{localStorage.setItem(KEY,JSON.stringify(seen.slice(-645)))}catch{}}function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}// 同じ6枚にジャンルや近い話題が重ならないようにする。
+const CARDS_PER_BATCH=6;
 const THEME_GROUPS={
  '麻雀':'麻雀',
  'ニュース':'ニュース・社会','話題のニュース':'ニュース・社会','政治・社会':'ニュース・社会',
@@ -92,13 +97,13 @@ const THEME_GROUPS={
  '地元・幼なじみ':'地元・幼なじみ',
  'ディベート':'ディベート'
 };
-function topicGroup(t){return THEME_GROUPS[t.cat]||t.cat;}
+function topicGroup(t){const theme=t.theme||t.cat;return THEME_GROUPS[theme]||theme;}
 function newBatch(){
  const all=allowed();
  const mixed=$('category').value==='すべて';
  let pool=all.filter(t=>!seen.includes(t.id));
- // 未出題が十分でも8ジャンルに満たない場合、履歴を一巡として再スタート。
- if(pool.length<8 || (mixed && new Set(pool.map(topicGroup)).size<8)){
+ // 未出題が十分でも6ジャンルに満たない場合、履歴を一巡として再スタート。
+ if(pool.length<CARDS_PER_BATCH || (mixed && new Set(pool.map(topicGroup)).size<CARDS_PER_BATCH)){
    const ids=new Set(all.map(t=>t.id));
    seen=seen.filter(id=>!ids.has(id));
    pool=all;
@@ -108,55 +113,139 @@ function newBatch(){
    const groups=new Map();
    for(const t of pool){const group=topicGroup(t);if(!groups.has(group))groups.set(group,[]);groups.get(group).push(t);}
    const picked=[];
-   for(const group of shuffle([...groups.keys()]).slice(0,8)){
+   for(const group of shuffle([...groups.keys()]).slice(0,CARDS_PER_BATCH)){
      picked.push(shuffle(groups.get(group))[0]);
    }
    batch=shuffle(picked).map(t=>({...t,used:false}));
  }else{
-   // ジャンル指定時は従来どおりそのジャンルから8問。
-   batch=shuffle([...pool]).slice(0,8).map(t=>({...t,used:false}));
+   // ジャンル指定時は従来どおりそのジャンルから6問。
+   batch=shuffle([...pool]).slice(0,CARDS_PER_BATCH).map(t=>({...t,used:false}));
  }
  render();save();
 }
 // Manually proofread breaks for all 80 topics. Pipe is a possible wrap point,
 // not a forced line break; each phrase remains intact on wide and narrow layouts.
 const DISPLAY_PHRASES = ["テンパイ即リーチ派？ |それとも|ダマテン派？", "一晩だけ|プロ雀士に|弟子入りできるなら|誰？", "この4人で|一番「勝負強い」のは|誰？", "麻雀は運と実力、|何対何だと思う？", "4人の打ち筋を|それぞれ|一言で表すなら？", "一番怖いリーチを|かけるのは誰？", "一生に一度だけ|必ずアガれるなら、|どの役満？", "いちばん悔しかった|放銃は？", "点数より|トップにこだわる？", "麻雀で一番|いらないと思う|ルールは？", "リーチ後の|一発ツモと役満、|どっちが興奮する？", "麻雀の読みは|どこまで信じられる？", "誰か1人と|ペア麻雀するなら|誰？", "ラス目の親、|オーラスで|何を狙う？", "一番「顔に出る」|タイプは誰？", "麻雀の神様に|質問を一つだけ|できるなら？", "4人の麻雀大会に|賞品を出すなら？", "SNSで話題になる|ニュースと|テレビのニュース、|どっちを信用する？", "最近気になった|新商品や|新サービスは？", "AIに今の仕事を|どれくらい任せたい？", "物価が上がって|一番困った|買い物は？", "最近見たニュースで|一番驚いたものは？", "ニュースを1つだけ|毎日追うなら|何の分野？", "宇宙旅行が|100万円になったら|行く？", "現金のない社会に|なっても困らない？", "ネットで拡散した|情報、|どこまで信じる？", "日本がこれから|一番力を入れるべき|ことは？", "自動運転だけの|社会になったら？", "今の時代、|家を買う？|借りる？", "AIとプロ雀士が|対決したら|どちらを応援する？", "最近の|スポーツニュースで|気になった選手は？", "子どもの頃、|友達の家で|一番盛り上がった|遊びは？", "子どもの頃に|一番遊んだ|ゲームは？", "学生時代の自分に|1つ言うなら？", "4人で一番笑った|出来事は何？", "昔と性格が|一番変わったのは|誰？", "懐かしい携帯電話|といえば何？", "今聴いても|テンションが上がる|平成の曲は？", "学生時代に流行った|遊びを今やるなら？", "昔好きだった|漫画・アニメの|最高傑作は？", "人生で一度だけ|戻れるなら|何歳？", "昔の自分と|今の自分、|どちらがモテそう？", "一年間無料で|住めるなら、|都会の高級|マンションと|海辺の一軒家|どっち？", "過去に10分|戻れる能力と|未来を10分|見られる能力、|どっち？", "1億円もらえる|代わりにスマホを|一生使えない。|受け取る？", "一生ラーメン無料と|一生焼肉無料、|どっち？", "毎日3時間睡眠で|元気か、|毎日好きな夢を|見られるか？", "無人島に4人で|行くなら、|それぞれの役割は？", "10億円を独り占めか、|親しい人10人に|1億円ずつか？", "一生ウソが|つけないか、|人のウソを全部|見抜けるか？", "一生行ける旅先が|国内だけか、|海外だけか？", "自分の寿命が|分かるか、|知らないままで|いるか？", "4人で会社を|作るなら|社長は誰？", "4人で10年後に|集まるなら、|どんな場所がいい？", "20歳の自分に|恋愛アドバイス|するなら？", "第一印象と|付き合ってからの|ギャップは大切？", "人生で一番|勇気を出した|告白や決断は？", "付き合う相手と|趣味は同じほうが|いい？", "40歳までに|達成したいことは？", "若い頃と今で|お金の使い方は|どう変わった？", "友達として|一番ありがたい|ことって何？", "一緒に旅行して|楽しい人の|条件は？", "自分にとって|理想の休日は？", "最近「大人に|なったな」と|思った瞬間は？", "異性の声で|ドキッとするのは|どんな瞬間？", "大人になってから|「ちょっと色気|あるな」と思う|仕草は？", "デートで手をつなぐ|タイミング、|昔と今で変わった？", "キスは雰囲気重視？|タイミング重視？", "恋人と2人きりの|旅行なら|温泉とリゾート、|どっち？", "異性に|「今日はちょっと|攻めてるな」と|感じる服装は？", "色気って|顔・声・仕草・会話の|どこに出る？", "恋愛ドラマの|濃厚なキスシーン、|直視できる？", "好きな人の前で|一番緊張した|出来事は？", "恋人に甘える派？|甘えられる派？", "セクシーさと|かわいさ、|惹かれるのは|どっち？", "初デートで|家に誘われたら、|どう受け取る？", "思わず目を|そらしたくなるほど|照れた恋愛の|瞬間は？", "パートナーに|言われたら照れる|褒め言葉は？", "大人の恋愛で|「これは反則」と|思う魅力は？", "一緒に映画を|見るとき、|恋愛シーンで|気まずくなる？"];
-// Japanese-word-aware wrapping: keep meaning units together without altering question text.
-// v33: Use Japanese lexical units, never arbitrary 5-9 character chunks.
-const wordSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
+// v34: Build intentional, width-aware Japanese lines rather than 10-character spans.
+// The original question text is never changed. Lines are recomputed for tablet/phone widths.
+const jpSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
   ? new Intl.Segmenter('ja', {granularity:'word'}) : null;
-function readableParts(text){
-  if(!wordSegmenter) return [text];
-  const words=Array.from(wordSegmenter.segment(text), s=>s.segment);
-  const result=[];
-  let current='';
-  const joinsPrevious=/^[はがをにへでとものやかねよぞさなわばもやからまでよりでもってためほどなどだけくらいぐらいこそすら]$/;
-  for(let i=0;i<words.length;i++){
-    const word=words[i];
-    if(!word)continue;
-    // Attach particles, punctuation and auxiliary endings to the preceding phrase.
-    if(!current){current=word;continue;}
-    if(/^[、。！？?!，．：:）】」』]+$/.test(word) || joinsPrevious.test(word) || /^[ぁ-ん]{1,2}$/.test(word)){
-      current+=word;continue;
-    }
-    // Adjectives and negation attach when the phrase is short.
-    if(current.length<=4 && /^[ぁ-ん]{1,4}$/.test(word)){current+=word;continue;}
-    // Prefer clauses of up to about 10 characters; never break a lexical word itself.
-    if(Array.from(current+word).length<=10 && !/[、。！？?!]$/.test(current)){
-      current+=word;continue;
-    }
-    result.push(current); current=word;
-  }
-  if(current)result.push(current);
-  return result;
+const jpGraphemeSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
+  ? new Intl.Segmenter('ja', {granularity:'grapheme'}) : null;
+const JP_CLOSE = /^[、。！？?!，．：:；;）】」』〉》％%]+$/;
+const JP_OPEN = /^[（【「『〈《]+$/;
+const JP_PARTICLE = /^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|さ|な|わ|ば|から|まで|より|でも|って|こそ|だけ|ほど|など|くらい|ぐらい|には|では|とは|もの|こと|ため)$/;
+const JP_AFFIX = /^(?:者|人|中|前|後|間|性|感|的|化|力|度|式|目|回|年|歳|円|点|％|パーセント)$/;
+const JP_PROTECTED = ['1か月','2か月','3か月','プロ雀士','勝負強い','配偶者','小学生','中学生','高校生','大学生','社会人','幼なじみ','友達同士','一人暮らし','共働き','学生時代','学校生活','仕事選び','価値観','身体の相性','運転免許','キャッシュレス','一発ツモ','大三元','点数計算','オーラス','親孝行','人工知能','大人の本音','四暗刻','国士無双','一生懸命','住みやすい','アガれる','スマホ','ファミコン','スーファミ','キスシーン','ボディタッチ','リメイク','瞬間移動','大記録','文化祭','高校時代','卒業直後','役割分担','共同生活','共同責任者','秘密基地','秘密基','境界線','雰囲気作り','臨時収入','家族旅行','長期休暇','金銭感覚','一日旅行','旅行禁止','自動運転','電気自動車','物価上昇','匿名投稿','高校卒業','社会科見学','ボードゲーム','動画作品','初体験','交通機関','体育祭','友情','安心して','結婚生活','日常派','名場面','愛情表現','一番','プロ雀士','学生生活','成人式','学校生活','一日分','旅行代','休日','音楽鑑賞','評価','上達','大人の休日','感覚','現実','人生','ラーメン無料','焼肉無料','ほしい','欲しい','友人関係','安心感','恋愛経験','計画性','距離感','跳満','満貫','全自動卓','手積み','復活希望','一泊旅行','案内役','副店長','予想外','品質優先','完全再現','新記録','自由時間','短期戦','長期戦','人間関係','恋愛相談番組','近場','何枚','盛り上がった','変わった','聴きたい','決めず','比べて','受けたら','変わって','残したい','話して','髪型','どちら','一度だけ','見分け','なったら','なって','戻れる','お金','同じ','計画','浮気','学生時代','一番','友達','相手','生き方','見つけた','何歳','1年分','一年分','予定外','性的経験','自分専用','始めたら','撮るなら','行くなら','守るなら','使うなら','するなら','どうなっていて','なっていてほしい','てほしい','話したい','残したい','予想外','自分専用','旅の相棒','譲れない','したい','豪華旅行','旅行先','相談相手','恒例行事','無人島生活','秘密を守る','2人旅'];
+const JP_VERB_ENDING = /^(?:する|した|して|しない|できる|できた|できない|される|すべ|き|たい|たら|なら|そう|やすい|にくい|れる|られる|あり|ある|あっ|ない|なっ|思う|考える|みる|しまう|らしい|って|い|きた)$/;
+function segmentJapanese(sentence){
+ if(!jpSegmenter)return Array.from(sentence);
+ const tokens=[];let opener='';
+ for(const {segment:bit} of jpSegmenter.segment(sentence)){
+   if(!bit)continue;
+   if(JP_OPEN.test(bit)){opener+=bit;continue;}
+   if(JP_CLOSE.test(bit)||/^\s+$/.test(bit)){
+     if(tokens.length)tokens[tokens.length-1]+=bit;else opener+=bit;
+     continue;
+   }
+   tokens.push(opener+bit);opener='';
+ }
+ if(opener){if(tokens.length)tokens[tokens.length-1]+=opener;else tokens.push(opener);}
+ return tokens;
+}
+function protectedBreakPositions(text){
+ const strong=new Set(), soft=new Set();
+ function add(word,at,set){
+   if(word.length>24)return;
+   for(let k=at+1;k<at+word.length;k++)set.add(k);
+ }
+ for(const m of text.matchAll(/\d+(?:,\d{3})*(?:億|万|千)?(?:円|人|歳|年|分|時間|回|枚|点|泊|日)/gu)){
+   add(m[0],m.index,strong);
+ }
+ for(const word of JP_PROTECTED){
+   let at=0;
+   while((at=text.indexOf(word,at))!==-1){add(word,at,strong);at+=word.length;}
+ }
+ const patterns=[
+   [/[ァ-ヶー]{2,12}[ぁ-ん]{0,4}/gu,strong],
+   [/[ァ-ヶー]{1,9}[一-龯々]{1,5}/gu,strong],
+   [/([一-龯々]{2,8})([ぁ-ん]{1,5})/gu,soft],
+   [/[ぁ-ん]{4,9}/gu,soft]
+ ];
+ for(const [pattern,set] of patterns){
+   for(const m of text.matchAll(pattern)){
+     if(m[2]&&/^[はがをにへでともやかの]/.test(m[2]))continue;
+     add(m[0],m.index,set);
+   }
+ }
+ return {strong,soft};
+}
+function splitLongToken(token,ctx,maxWidth){
+ if(ctx.measureText(token).width<=maxWidth) return [token];
+ const graphemes=jpGraphemeSegmenter
+   ? Array.from(jpGraphemeSegmenter.segment(token), s=>s.segment) : Array.from(token);
+ const out=[];let line='';
+ for(const ch of graphemes){
+   if(line && ctx.measureText(line+ch).width>maxWidth){out.push(line);line=ch;}
+   else line+=ch;
+ }
+ if(line)out.push(line);
+ return out;
+}
+function lineBreakPenalty(left,right){
+ if(/[、。！？?!：:]$/.test(left)) return -22;
+ let cost=12;const cleanRight=right.replace(/[？?!。、]+$/u,);
+ if(/[「『（【〈《]$/.test(left))cost+=120;
+ if(/^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|さ|な|わ|ば|から|まで|より|でも|って|こそ|だけ|ほど|など|くらい|ぐらい|には|では|とは|もの|こと|ため|た|て|だ|い|なら|たい|たら|れ|る|そう|ば|ます|ました|ません|しい|ほしい)$/.test(cleanRight))cost+=520;
+ if(/(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|から|まで|より|だけ|って|ため|こと)$/.test(left)) cost+=35;
+ if(/^(?:する|した|して|できる|できた|できない|ない|なっ|思う|考える|ある|あり|そう|たい|たら|なら|ほしい|欲しい|だろう)/.test(right))cost+=35;
+ if(Array.from(right).length<=2 && !/[？?!]$/.test(right))cost+=12;
+ return cost;
+}
+function balancedJapaneseLines(text,element){
+ const width=Math.max(1,element.clientWidth-12);
+ const style=getComputedStyle(element);
+ const canvas=balancedJapaneseLines.canvas||(balancedJapaneseLines.canvas=document.createElement('canvas'));
+ const ctx=canvas.getContext('2d');
+ ctx.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+ let tokens=segmentJapanese(text).flatMap(x=>splitLongToken(x,ctx,width));
+ if(!tokens.length)return [''];
+ const positions=protectedBreakPositions(text);
+ const boundaries=[0];for(const tk of tokens)boundaries.push(boundaries[boundaries.length-1]+tk.length);
+ const n=tokens.length, best=new Array(n+1).fill(Infinity), choice=new Array(n+1).fill(n);
+ best[n]=0;
+ for(let i=n-1;i>=0;i--){
+   let content='';
+   for(let j=i+1;j<=n;j++){
+     content+=tokens[j-1];
+     const w=ctx.measureText(content).width;
+     if(w>width+0.5)break;
+     const ratio=w/width, isLast=j===n;
+     const ragged=(1-ratio)**2*(isLast?27:115);
+     const lastOrphan=isLast&&i>0&&ratio<0.30?45:0;
+     const cost=ragged+lastOrphan+(isLast?0:lineBreakPenalty(tokens[j-1],tokens[j])+(positions.strong.has(boundaries[j])?650:positions.soft.has(boundaries[j])?110:0))+best[j];
+     if(cost<best[i]){best[i]=cost;choice[i]=j;}
+   }
+   // Safe fallback if a rare token is still wider than the content box.
+   if(!Number.isFinite(best[i])){choice[i]=i+1;best[i]=300+best[i+1];}
+ }
+ const lines=[];
+ for(let i=0;i<n;){const j=Math.max(i+1,choice[i]);lines.push(tokens.slice(i,j).join(''));i=j;}
+ return lines;
 }
 function setReadableQuestion(el, topic){
-  el.replaceChildren();
-  for(const part of readableParts(topic.q)){
-    const span=document.createElement('span');
-    span.className='meaning-unit';span.textContent=part;
-    el.append(span);
-  }
+ el.dataset.originalQuestion=topic.q;
+ el.textContent=topic.q;
+}
+function layoutQuestion(el){
+ const original=el.dataset.originalQuestion;
+ if(original==null)return;
+ const lines=balancedJapaneseLines(original,el);
+ el.replaceChildren();
+ for(const content of lines){
+   const span=document.createElement('span');span.className='question-line';
+   span.textContent=content;el.append(span);
+ }
 }
 
 function render(){
@@ -171,11 +260,19 @@ function render(){
   const foot=document.createElement('span');foot.className='tileFoot';foot.textContent=t.used?'CLEARED':'▶ START TALK';
   b.append(no,cat,q,foot);b.onclick=()=>openCard(i);el.append(b);
  });
- fitAllCards();$('remaining').textContent='8枚の議題 ／ 未選択 '+batch.filter(x=>!x.used).length+'枚';
+ fitAllCards();$('remaining').textContent='6枚の議題 ／ 未選択 '+batch.filter(x=>!x.used).length+'枚';
 }
 function show(t){active=t;$('revealTag').textContent='本日の議題 ／ '+t.cat;$('question').textContent=t.q;$('followup').textContent='まずは全員の答えを聞いてみよう。';const deep=$('deepPrompts');deep.replaceChildren();deepQuestions(t).forEach((prompt,i)=>{const li=document.createElement('li');li.textContent=prompt;deep.append(li)});$('speaker').textContent='全員で話してみよう！';$('selectedPlayer').hidden=true;$('overlay').hidden=false;document.body.style.overflow='hidden';$('close').focus()}function openCard(i){let t=batch[i];if(!t)return;t.used=true;if(!seen.includes(t.id))seen.push(t.id);save();render();show(t)}function close(){ $('overlay').hidden=true;document.body.style.overflow='';}$('refresh').onclick=newBatch;$('category').onchange=newBatch;$('close').onclick=close;$('backdrop').onclick=close;$('another').onclick=()=>{close();if(batch.every(t=>t.used))newBatch();document.getElementById('cards').scrollIntoView({behavior:'smooth',block:'center'})};$('chooseSpeaker').onclick=()=>{const i=Math.floor(Math.random()*names.length);$('speaker').textContent='最初に話すのは…… '+names[i]+'！';const box=$('selectedPlayer');box.replaceChildren();const img=document.createElement('img');img.src='assets/'+['take','kazu','taro','tsuyoshi'][i]+'.png';img.alt=names[i];const span=document.createElement('span');span.textContent='PLAYER '+String(i+1)+' READY';box.append(img,span);box.hidden=false;};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('overlay').hidden)close()});$('makeNews').onclick=()=>{let txt=$('headline').value.trim();if(!txt){$('headline').focus();return}show({cat:'持ち込みニュース',q:'「'+txt+'」について、みんなはどう思う？',sub:'賛成？ 反対？ 自分の生活にどう関係する？'})};
-function fitAllCards(){ /* Cards expand to fit the complete text. */ }
-window.addEventListener('resize',fitAllCards);
+function fitAllCards(){
+ for(const el of document.querySelectorAll('.tileQuestion')) layoutQuestion(el);
+}
+let cardResizeFrame=0;
+function refreshQuestionLayout(){
+ if(cardResizeFrame) cancelAnimationFrame(cardResizeFrame);
+ cardResizeFrame=requestAnimationFrame(()=>{cardResizeFrame=0;fitAllCards()});
+}
+window.addEventListener('resize',refreshQuestionLayout);
+if(document.fonts?.ready)document.fonts.ready.then(refreshQuestionLayout);
 newBatch();
 fitAllCards();
 
