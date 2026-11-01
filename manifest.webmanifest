@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "MIDNIGHT TALK QUEST",
+  "short_name": "TALK QUEST",
+  "description": "幼なじみ4人のための会話お題カード。全630問。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c1021",
+  "theme_color": "#0c1021",
+  "orientation": "any",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
