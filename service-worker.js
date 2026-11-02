@@ -1,4 +1,4 @@
-const CACHE_NAME = 'midnight-talk-quest-v36-645topics-20261102';
+const CACHE_NAME = 'midnight-talk-quest-v40-lounge-bgm-645-20261102';
 const APP_SHELL = [
   "./",
   "./index.html",

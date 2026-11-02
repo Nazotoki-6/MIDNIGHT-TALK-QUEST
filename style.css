@@ -442,3 +442,88 @@ html { -webkit-text-size-adjust:100%; }
   .topic-tile,.topic-tile:nth-child(n) { min-height:138px!important; padding:15px 19px!important; }
   .tileQuestion,.topic-tile .tileQuestion { font-size:clamp(17px,4.5vw,20px)!important; }
 }
+
+/* v37: modal must obey the same lexical line-break rules as all 645 tiles. */
+.reveal h2#question {
+  font-size:clamp(23px,3vw,31px)!important;
+  line-height:1.62!important;
+  letter-spacing:0!important;
+  width:100%!important;
+  min-width:0!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  text-wrap:initial!important;
+}
+.reveal h2#question .question-line {
+  display:block!important;
+  white-space:nowrap!important;
+  width:100%!important;
+  overflow:visible!important;
+  text-align:center!important;
+}
+@media(max-width:600px){
+  .reveal h2#question{font-size:clamp(18px,5.1vw,25px)!important;}
+}
+
+/* v38: browser-native responsive wrapping, with soft word-group opportunities.
+   Do not force whole lines to be non-wrapping or use the v37 canvas balancer. */
+.tileQuestion,.topic-tile .tileQuestion,.reveal h2#question {
+  display:block!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+  line-break:strict!important;
+  text-wrap:pretty!important;
+  text-align:center!important;
+  max-width:100%!important;
+}
+.tileQuestion .question-line,.reveal h2#question .question-line{
+  display:inline!important;
+  white-space:normal!important;
+}
+/* Avoid treating every Japanese character as a fallback break: otherwise
+   a trailing question mark or particle can be stranded on its own line. */
+.tileQuestion,.topic-tile .tileQuestion,.reveal h2#question {overflow-wrap:normal!important;}
+
+
+/* v39 | bold Japanese variety-TV style typography.
+   Inspired by the look of Japanese VTR captions, NOT the commercial broadcast font.
+   No web-font downloads: system Japanese fonts preserve offline playback. */
+:root {
+  --mtq-variety-font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans CJK JP", "Yu Gothic", Meiryo, sans-serif;
+}
+/* Six cards: readable caption-style lettering with restrained TV-style colored shadow. */
+.topic-tile .tileQuestion {
+  font-family:var(--mtq-variety-font)!important;
+  font-weight:900!important;
+  font-synthesis:weight;
+  font-size:clamp(17px,1.9vw,23px)!important;
+  line-height:1.55!important;
+  letter-spacing:-.022em!important;
+  color:#fffef5!important;
+  -webkit-text-stroke:.55px #121524;
+  paint-order:stroke fill;
+  text-shadow:1px 1px 0 #050b19,2px 3px 0 #080e1d,3px 4px 0 #32738c!important;
+  text-rendering:optimizeLegibility;
+}
+/* Opened topic: a stronger television-caption reveal. */
+.reveal h2#question {
+  font-family:var(--mtq-variety-font)!important;
+  font-weight:900!important;
+  font-synthesis:weight;
+  font-size:clamp(23px,3.15vw,33px)!important;
+  line-height:1.53!important;
+  letter-spacing:-.025em!important;
+  color:#fffdf4!important;
+  -webkit-text-stroke:.65px #071228;
+  paint-order:stroke fill;
+  text-shadow:1px 1px 0 #071228,3px 4px 0 #13203c,4px 5px 0 #408298!important;
+  text-rendering:optimizeLegibility;
+}
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+ .topic-tile .tileQuestion{font-size:clamp(17px,2.35vw,21px)!important;}
+}
+@media (max-width:600px){
+ .topic-tile .tileQuestion{font-size:clamp(18px,4.6vw,21px)!important;line-height:1.55!important;}
+ .reveal h2#question{font-size:clamp(21px,5.4vw,27px)!important;line-height:1.54!important;}
+}

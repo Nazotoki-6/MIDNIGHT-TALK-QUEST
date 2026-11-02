@@ -123,129 +123,98 @@ function newBatch(){
  }
  render();save();
 }
-// Manually proofread breaks for all 80 topics. Pipe is a possible wrap point,
-// not a forced line break; each phrase remains intact on wide and narrow layouts.
-const DISPLAY_PHRASES = ["テンパイ即リーチ派？ |それとも|ダマテン派？", "一晩だけ|プロ雀士に|弟子入りできるなら|誰？", "この4人で|一番「勝負強い」のは|誰？", "麻雀は運と実力、|何対何だと思う？", "4人の打ち筋を|それぞれ|一言で表すなら？", "一番怖いリーチを|かけるのは誰？", "一生に一度だけ|必ずアガれるなら、|どの役満？", "いちばん悔しかった|放銃は？", "点数より|トップにこだわる？", "麻雀で一番|いらないと思う|ルールは？", "リーチ後の|一発ツモと役満、|どっちが興奮する？", "麻雀の読みは|どこまで信じられる？", "誰か1人と|ペア麻雀するなら|誰？", "ラス目の親、|オーラスで|何を狙う？", "一番「顔に出る」|タイプは誰？", "麻雀の神様に|質問を一つだけ|できるなら？", "4人の麻雀大会に|賞品を出すなら？", "SNSで話題になる|ニュースと|テレビのニュース、|どっちを信用する？", "最近気になった|新商品や|新サービスは？", "AIに今の仕事を|どれくらい任せたい？", "物価が上がって|一番困った|買い物は？", "最近見たニュースで|一番驚いたものは？", "ニュースを1つだけ|毎日追うなら|何の分野？", "宇宙旅行が|100万円になったら|行く？", "現金のない社会に|なっても困らない？", "ネットで拡散した|情報、|どこまで信じる？", "日本がこれから|一番力を入れるべき|ことは？", "自動運転だけの|社会になったら？", "今の時代、|家を買う？|借りる？", "AIとプロ雀士が|対決したら|どちらを応援する？", "最近の|スポーツニュースで|気になった選手は？", "子どもの頃、|友達の家で|一番盛り上がった|遊びは？", "子どもの頃に|一番遊んだ|ゲームは？", "学生時代の自分に|1つ言うなら？", "4人で一番笑った|出来事は何？", "昔と性格が|一番変わったのは|誰？", "懐かしい携帯電話|といえば何？", "今聴いても|テンションが上がる|平成の曲は？", "学生時代に流行った|遊びを今やるなら？", "昔好きだった|漫画・アニメの|最高傑作は？", "人生で一度だけ|戻れるなら|何歳？", "昔の自分と|今の自分、|どちらがモテそう？", "一年間無料で|住めるなら、|都会の高級|マンションと|海辺の一軒家|どっち？", "過去に10分|戻れる能力と|未来を10分|見られる能力、|どっち？", "1億円もらえる|代わりにスマホを|一生使えない。|受け取る？", "一生ラーメン無料と|一生焼肉無料、|どっち？", "毎日3時間睡眠で|元気か、|毎日好きな夢を|見られるか？", "無人島に4人で|行くなら、|それぞれの役割は？", "10億円を独り占めか、|親しい人10人に|1億円ずつか？", "一生ウソが|つけないか、|人のウソを全部|見抜けるか？", "一生行ける旅先が|国内だけか、|海外だけか？", "自分の寿命が|分かるか、|知らないままで|いるか？", "4人で会社を|作るなら|社長は誰？", "4人で10年後に|集まるなら、|どんな場所がいい？", "20歳の自分に|恋愛アドバイス|するなら？", "第一印象と|付き合ってからの|ギャップは大切？", "人生で一番|勇気を出した|告白や決断は？", "付き合う相手と|趣味は同じほうが|いい？", "40歳までに|達成したいことは？", "若い頃と今で|お金の使い方は|どう変わった？", "友達として|一番ありがたい|ことって何？", "一緒に旅行して|楽しい人の|条件は？", "自分にとって|理想の休日は？", "最近「大人に|なったな」と|思った瞬間は？", "異性の声で|ドキッとするのは|どんな瞬間？", "大人になってから|「ちょっと色気|あるな」と思う|仕草は？", "デートで手をつなぐ|タイミング、|昔と今で変わった？", "キスは雰囲気重視？|タイミング重視？", "恋人と2人きりの|旅行なら|温泉とリゾート、|どっち？", "異性に|「今日はちょっと|攻めてるな」と|感じる服装は？", "色気って|顔・声・仕草・会話の|どこに出る？", "恋愛ドラマの|濃厚なキスシーン、|直視できる？", "好きな人の前で|一番緊張した|出来事は？", "恋人に甘える派？|甘えられる派？", "セクシーさと|かわいさ、|惹かれるのは|どっち？", "初デートで|家に誘われたら、|どう受け取る？", "思わず目を|そらしたくなるほど|照れた恋愛の|瞬間は？", "パートナーに|言われたら照れる|褒め言葉は？", "大人の恋愛で|「これは反則」と|思う魅力は？", "一緒に映画を|見るとき、|恋愛シーンで|気まずくなる？"];
-// v34: Build intentional, width-aware Japanese lines rather than 10-character spans.
-// The original question text is never changed. Lines are recomputed for tablet/phone widths.
-const jpSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
-  ? new Intl.Segmenter('ja', {granularity:'word'}) : null;
-const jpGraphemeSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
-  ? new Intl.Segmenter('ja', {granularity:'grapheme'}) : null;
-const JP_CLOSE = /^[、。！？?!，．：:；;）】」』〉》％%]+$/;
-const JP_OPEN = /^[（【「『〈《]+$/;
-const JP_PARTICLE = /^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|さ|な|わ|ば|から|まで|より|でも|って|こそ|だけ|ほど|など|くらい|ぐらい|には|では|とは|もの|こと|ため)$/;
-const JP_AFFIX = /^(?:者|人|中|前|後|間|性|感|的|化|力|度|式|目|回|年|歳|円|点|％|パーセント)$/;
-const JP_PROTECTED = ['1か月','2か月','3か月','プロ雀士','勝負強い','配偶者','小学生','中学生','高校生','大学生','社会人','幼なじみ','友達同士','一人暮らし','共働き','学生時代','学校生活','仕事選び','価値観','身体の相性','運転免許','キャッシュレス','一発ツモ','大三元','点数計算','オーラス','親孝行','人工知能','大人の本音','四暗刻','国士無双','一生懸命','住みやすい','アガれる','スマホ','ファミコン','スーファミ','キスシーン','ボディタッチ','リメイク','瞬間移動','大記録','文化祭','高校時代','卒業直後','役割分担','共同生活','共同責任者','秘密基地','秘密基','境界線','雰囲気作り','臨時収入','家族旅行','長期休暇','金銭感覚','一日旅行','旅行禁止','自動運転','電気自動車','物価上昇','匿名投稿','高校卒業','社会科見学','ボードゲーム','動画作品','初体験','交通機関','体育祭','友情','安心して','結婚生活','日常派','名場面','愛情表現','一番','プロ雀士','学生生活','成人式','学校生活','一日分','旅行代','休日','音楽鑑賞','評価','上達','大人の休日','感覚','現実','人生','ラーメン無料','焼肉無料','ほしい','欲しい','友人関係','安心感','恋愛経験','計画性','距離感','跳満','満貫','全自動卓','手積み','復活希望','一泊旅行','案内役','副店長','予想外','品質優先','完全再現','新記録','自由時間','短期戦','長期戦','人間関係','恋愛相談番組','近場','何枚','盛り上がった','変わった','聴きたい','決めず','比べて','受けたら','変わって','残したい','話して','髪型','どちら','一度だけ','見分け','なったら','なって','戻れる','お金','同じ','計画','浮気','学生時代','一番','友達','相手','生き方','見つけた','何歳','1年分','一年分','予定外','性的経験','自分専用','始めたら','撮るなら','行くなら','守るなら','使うなら','するなら','どうなっていて','なっていてほしい','てほしい','話したい','残したい','予想外','自分専用','旅の相棒','譲れない','したい','豪華旅行','旅行先','相談相手','恒例行事','無人島生活','秘密を守る','2人旅'];
-const JP_VERB_ENDING = /^(?:する|した|して|しない|できる|できた|できない|される|すべ|き|たい|たら|なら|そう|やすい|にくい|れる|られる|あり|ある|あっ|ない|なっ|思う|考える|みる|しまう|らしい|って|い|きた)$/;
-function segmentJapanese(sentence){
- if(!jpSegmenter)return Array.from(sentence);
- const tokens=[];let opener='';
- for(const {segment:bit} of jpSegmenter.segment(sentence)){
-   if(!bit)continue;
-   if(JP_OPEN.test(bit)){opener+=bit;continue;}
-   if(JP_CLOSE.test(bit)||/^\s+$/.test(bit)){
-     if(tokens.length)tokens[tokens.length-1]+=bit;else opener+=bit;
-     continue;
-   }
-   tokens.push(opener+bit);opener='';
- }
- if(opener){if(tokens.length)tokens[tokens.length-1]+=opener;else tokens.push(opener);}
- return tokens;
-}
-function protectedBreakPositions(text){
- const strong=new Set(), soft=new Set();
- function add(word,at,set){
-   if(word.length>24)return;
-   for(let k=at+1;k<at+word.length;k++)set.add(k);
- }
- for(const m of text.matchAll(/\d+(?:,\d{3})*(?:億|万|千)?(?:円|人|歳|年|分|時間|回|枚|点|泊|日)/gu)){
-   add(m[0],m.index,strong);
- }
- for(const word of JP_PROTECTED){
-   let at=0;
-   while((at=text.indexOf(word,at))!==-1){add(word,at,strong);at+=word.length;}
- }
- const patterns=[
-   [/[ァ-ヶー]{2,12}[ぁ-ん]{0,4}/gu,strong],
-   [/[ァ-ヶー]{1,9}[一-龯々]{1,5}/gu,strong],
-   [/([一-龯々]{2,8})([ぁ-ん]{1,5})/gu,soft],
-   [/[ぁ-ん]{4,9}/gu,soft]
+// v38: Japanese soft-wrap. No inserted <br>, fixed lines, or nowrap line spans.
+// On browsers without Chrome's auto-phrase (such as iPad Safari), add
+// non-displaying break opportunities at natural Japanese word-group boundaries.
+const jpWordSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
+  ? new Intl.Segmenter('ja',{granularity:'word'}) : null;
+const NO_BREAK_BEFORE = /^(?:[、。！？?!，．：:；;）】」』〉》％%]|は$|が$|を$|に$|へ$|で$|と$|も$|の$|や$|か$|ね$|よ$|ぞ$|さ$|な$|わ$|ば$|から$|まで$|より$|でも$|って$|こそ$|だけ$|ほど$|など$|くらい$|ぐらい$|には$|では$|とは$|た$|て$|だ$|い$|ます$|ました$|ません$|ない$|なる$|なっ$|れる$|られる$|らしい$|たい$|たら$|なら$|する$|した$|して$|できる$|できた$|できない$|けど$|ので$|です$|かも$)/u;
+const OPENING_BRACKET = /[（【「『〈《(\[]$/u;
+const PROTECTED_TERMS = [
+ '小学生','中学生','高校生','大学生','社会人','学生時代','高校時代','学生生活','仕事選び','仕事仲間','幼なじみ','4人','2人旅','好きな人','新サービス','新商品','プロ雀士','一発ツモ','アガれる','打ち筋','点数計算','役満','ラス目','オーラス','国士無双','三暗刻','四暗刻','満貫','跳満',
+ '恋愛観','結婚観','結婚生活','夫婦生活','新婚生活','価値観','金銭感覚','身体の相性','プライバシー','ボードゲーム','キャッシュレス','リメイク','家族旅行','人間関係','初デート','恋人同士','夫婦関係','自動運転','人工知能','一泊旅行','無人島生活','共同生活','旅行先','共同責任','相部屋','相手の立場','今の自分','一人暮らし','恋愛相談番組','どんなところ','何を優先して'
+];
+function safeBreakPositions(text){
+ const prohibited=new Set();
+ const forbid=(start,end)=>{for(let i=start+1;i<end;i++)prohibited.add(i);};
+ for(const word of PROTECTED_TERMS){let at=0;while((at=text.indexOf(word,at))!==-1){forbid(at,at+word.length);at+=word.length;}}
+ const rules=[
+  /[一-龯々]{1,10}[ぁ-ん]{1,12}/gu, // 変わった, 信じられる
+  /[一-龯々]{2,16}/gu,         // compound nouns
+  /[ァ-ヶー]{2,24}/gu,          // katakana
+  /[一-龯々]{1,9}[ァ-ヶー]{2,14}/gu,
+  /[ァ-ヶー]{1,16}[ぁ-ん]{1,12}/gu, // アガれる
+  /\d+(?:,\d{3})*(?:(?:億|万|千)?(?:円|人|歳|年|月|日|時間|分|回|枚|点|泊|番|つ|個|本|倍|代|名))+/gu,
  ];
- for(const [pattern,set] of patterns){
-   for(const m of text.matchAll(pattern)){
-     if(m[2]&&/^[はがをにへでともやかの]/.test(m[2]))continue;
-     add(m[0],m.index,set);
-   }
- }
- return {strong,soft};
+ for(const regex of rules) for(const m of text.matchAll(regex)) forbid(m.index,m.index+m[0].length);
+ return prohibited;
 }
-function splitLongToken(token,ctx,maxWidth){
- if(ctx.measureText(token).width<=maxWidth) return [token];
- const graphemes=jpGraphemeSegmenter
-   ? Array.from(jpGraphemeSegmenter.segment(token), s=>s.segment) : Array.from(token);
- const out=[];let line='';
- for(const ch of graphemes){
-   if(line && ctx.measureText(line+ch).width>maxWidth){out.push(line);line=ch;}
-   else line+=ch;
+function addNaturalBreaks(text){
+ if(!text) return text;
+ if(!jpWordSegmenter) return text; // normal Japanese wrapping if no Segmenter
+ const segments=[...jpWordSegmenter.segment(text)];
+ const forbidden=safeBreakPositions(text);
+ const breakAt=new Set();
+ for(let i=0;i<segments.length-1;i++){
+  const left=segments[i].segment,right=segments[i+1].segment;
+  const at=segments[i+1].index;
+  if(forbidden.has(at))continue;
+  if(OPENING_BRACKET.test(left))continue;
+  if(NO_BREAK_BEFORE.test(right))continue;
+  if(/^\s+$/u.test(right))continue;
+  if(/[。、！？?!，．：:；;]$/u.test(left)){breakAt.add(at);continue;}
+  if(/[\s]$/u.test(left)){breakAt.add(at);continue;}
+  // Short fragments ending in kana are usually inflections / clitics.
+  // Keep them attached to nearby words, except for grammatical particles.
+  if(/^[ぁ-ん]{1,2}$/u.test(left)&&!/^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|から|まで|ば)$/u.test(left))continue;
+  // Never leave single kanji standing on its own at the end of a line.
+  if(/^[一-龯々]$/u.test(left))continue;
+  breakAt.add(at);
  }
- if(line)out.push(line);
+ // Editorial fallback break opportunities for long clauses that would
+ // otherwise become one unbreakable unit, verified against every topic.
+ const EXTRA_SOFT_AFTER = {
+   '友達にしてもらって嬉しかったことは？':['もらって','嬉しかった'],
+   '最近ちょっとだけ自慢したいことは？':['ちょっとだけ','自慢したい'],
+   'さりげないボディタッチはどこまでアリ？':['さりげない','ボディタッチは'],
+   '1年だけルームシェアするなら誰と暮らす？':['1年だけ','ルームシェアするなら'],
+   '4人で一度もしたことのない挑戦をするなら誰が先陣を切る？':['4人で','一度もしたことのない','挑戦をするなら','誰が'],
+   '大人になってから、恋愛で恥ずかしくて言えなかったことは？':['大人になってから、','恋愛で','恥ずかしくて'],
+   '恋人に言われて一番恥ずかしかった褒め言葉は？':['恋人に言われて','一番','恥ずかしかった'],
+   '10年後の自分の家庭や恋愛、友人関係はどうなっていてほしい？':['10年後の','自分の家庭や恋愛、','友人関係は'],
+   '恋人と性的な好みが違うとき、何を優先して折り合いをつける？':['恋人と','性的な好みが違うとき、','何を優先して'],
+ };
+ for(const term of EXTRA_SOFT_AFTER[text]||[]){
+   const at=text.indexOf(term);
+   if(at>=0)breakAt.add(at+term.length);
+ }
+ // Quoted speech plus its following particle belongs together.
+ for(const m of text.matchAll(/[」』](?:と|の|を|が|は)/gu)){
+   const at=m.index+m[0].length;
+   if(text[at]!=='は')breakAt.add(at);
+ }
+ // A quoted phrase may start a natural new line; never break just after its opening mark.
+ for(const m of text.matchAll(/[「『]/gu))if(m.index>0)breakAt.add(m.index);
+ // A break opportunity isn't a forced new line; the browser decides
+ // according to the actual iPad font, browser zoom, and card width.
+ let out='';
+ for(let i=0;i<text.length;i++){
+  if(breakAt.has(i))out+='\u200b';
+  out+=text[i];
+  // U+2060 prevents Safari from separating closing quotes from
+  // the following case particle despite kinsoku rules.
+  if(/[」』]/u.test(text[i]) && /^[とのをはがで]$/u.test(text[i+1]||''))out+='\u2060';
+  if(text[i]==='の' && text[i+1]==='は' && /[」』]/u.test(text[i-1]||''))out+='\u2060';
+ }
  return out;
-}
-function lineBreakPenalty(left,right){
- if(/[、。！？?!：:]$/.test(left)) return -22;
- let cost=12;const cleanRight=right.replace(/[？?!。、]+$/u,);
- if(/[「『（【〈《]$/.test(left))cost+=120;
- if(/^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|さ|な|わ|ば|から|まで|より|でも|って|こそ|だけ|ほど|など|くらい|ぐらい|には|では|とは|もの|こと|ため|た|て|だ|い|なら|たい|たら|れ|る|そう|ば|ます|ました|ません|しい|ほしい)$/.test(cleanRight))cost+=520;
- if(/(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|から|まで|より|だけ|って|ため|こと)$/.test(left)) cost+=35;
- if(/^(?:する|した|して|できる|できた|できない|ない|なっ|思う|考える|ある|あり|そう|たい|たら|なら|ほしい|欲しい|だろう)/.test(right))cost+=35;
- if(Array.from(right).length<=2 && !/[？?!]$/.test(right))cost+=12;
- return cost;
-}
-function balancedJapaneseLines(text,element){
- const width=Math.max(1,element.clientWidth-12);
- const style=getComputedStyle(element);
- const canvas=balancedJapaneseLines.canvas||(balancedJapaneseLines.canvas=document.createElement('canvas'));
- const ctx=canvas.getContext('2d');
- ctx.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
- let tokens=segmentJapanese(text).flatMap(x=>splitLongToken(x,ctx,width));
- if(!tokens.length)return [''];
- const positions=protectedBreakPositions(text);
- const boundaries=[0];for(const tk of tokens)boundaries.push(boundaries[boundaries.length-1]+tk.length);
- const n=tokens.length, best=new Array(n+1).fill(Infinity), choice=new Array(n+1).fill(n);
- best[n]=0;
- for(let i=n-1;i>=0;i--){
-   let content='';
-   for(let j=i+1;j<=n;j++){
-     content+=tokens[j-1];
-     const w=ctx.measureText(content).width;
-     if(w>width+0.5)break;
-     const ratio=w/width, isLast=j===n;
-     const ragged=(1-ratio)**2*(isLast?27:115);
-     const lastOrphan=isLast&&i>0&&ratio<0.30?45:0;
-     const cost=ragged+lastOrphan+(isLast?0:lineBreakPenalty(tokens[j-1],tokens[j])+(positions.strong.has(boundaries[j])?650:positions.soft.has(boundaries[j])?110:0))+best[j];
-     if(cost<best[i]){best[i]=cost;choice[i]=j;}
-   }
-   // Safe fallback if a rare token is still wider than the content box.
-   if(!Number.isFinite(best[i])){choice[i]=i+1;best[i]=300+best[i+1];}
- }
- const lines=[];
- for(let i=0;i<n;){const j=Math.max(i+1,choice[i]);lines.push(tokens.slice(i,j).join(''));i=j;}
- return lines;
 }
 function setReadableQuestion(el, topic){
  el.dataset.originalQuestion=topic.q;
- el.textContent=topic.q;
+ el.textContent=addNaturalBreaks(topic.q);
 }
 function layoutQuestion(el){
- const original=el.dataset.originalQuestion;
- if(original==null)return;
- const lines=balancedJapaneseLines(original,el);
- el.replaceChildren();
- for(const content of lines){
-   const span=document.createElement('span');span.className='question-line';
-   span.textContent=content;el.append(span);
- }
+ if(!el.dataset.originalQuestion) return;
+ el.textContent=addNaturalBreaks(el.dataset.originalQuestion);
 }
 
 function render(){
@@ -262,14 +231,14 @@ function render(){
  });
  fitAllCards();$('remaining').textContent='6枚の議題 ／ 未選択 '+batch.filter(x=>!x.used).length+'枚';
 }
-function show(t){active=t;$('revealTag').textContent='本日の議題 ／ '+t.cat;$('question').textContent=t.q;$('followup').textContent='まずは全員の答えを聞いてみよう。';const deep=$('deepPrompts');deep.replaceChildren();deepQuestions(t).forEach((prompt,i)=>{const li=document.createElement('li');li.textContent=prompt;deep.append(li)});$('speaker').textContent='全員で話してみよう！';$('selectedPlayer').hidden=true;$('overlay').hidden=false;document.body.style.overflow='hidden';$('close').focus()}function openCard(i){let t=batch[i];if(!t)return;t.used=true;if(!seen.includes(t.id))seen.push(t.id);save();render();show(t)}function close(){ $('overlay').hidden=true;document.body.style.overflow='';}$('refresh').onclick=newBatch;$('category').onchange=newBatch;$('close').onclick=close;$('backdrop').onclick=close;$('another').onclick=()=>{close();if(batch.every(t=>t.used))newBatch();document.getElementById('cards').scrollIntoView({behavior:'smooth',block:'center'})};$('chooseSpeaker').onclick=()=>{const i=Math.floor(Math.random()*names.length);$('speaker').textContent='最初に話すのは…… '+names[i]+'！';const box=$('selectedPlayer');box.replaceChildren();const img=document.createElement('img');img.src='assets/'+['take','kazu','taro','tsuyoshi'][i]+'.png';img.alt=names[i];const span=document.createElement('span');span.textContent='PLAYER '+String(i+1)+' READY';box.append(img,span);box.hidden=false;};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('overlay').hidden)close()});$('makeNews').onclick=()=>{let txt=$('headline').value.trim();if(!txt){$('headline').focus();return}show({cat:'持ち込みニュース',q:'「'+txt+'」について、みんなはどう思う？',sub:'賛成？ 反対？ 自分の生活にどう関係する？'})};
+function show(t){active=t;$('revealTag').textContent='本日の議題 ／ '+t.cat;$('question').dataset.originalQuestion=t.q;$('question').textContent=t.q;$('followup').textContent='まずは全員の答えを聞いてみよう。';const deep=$('deepPrompts');deep.replaceChildren();deepQuestions(t).forEach((prompt,i)=>{const li=document.createElement('li');li.textContent=prompt;deep.append(li)});$('speaker').textContent='全員で話してみよう！';$('selectedPlayer').hidden=true;$('overlay').hidden=false;layoutQuestion($('question'));document.body.style.overflow='hidden';$('close').focus()}function openCard(i){let t=batch[i];if(!t)return;t.used=true;if(!seen.includes(t.id))seen.push(t.id);save();render();show(t)}function close(){ $('overlay').hidden=true;document.body.style.overflow='';}$('refresh').onclick=newBatch;$('category').onchange=newBatch;$('close').onclick=close;$('backdrop').onclick=close;$('another').onclick=()=>{close();if(batch.every(t=>t.used))newBatch();document.getElementById('cards').scrollIntoView({behavior:'smooth',block:'center'})};$('chooseSpeaker').onclick=()=>{const i=Math.floor(Math.random()*names.length);$('speaker').textContent='最初に話すのは…… '+names[i]+'！';const box=$('selectedPlayer');box.replaceChildren();const img=document.createElement('img');img.src='assets/'+['take','kazu','taro','tsuyoshi'][i]+'.png';img.alt=names[i];const span=document.createElement('span');span.textContent='PLAYER '+String(i+1)+' READY';box.append(img,span);box.hidden=false;};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('overlay').hidden)close()});$('makeNews').onclick=()=>{let txt=$('headline').value.trim();if(!txt){$('headline').focus();return}show({cat:'持ち込みニュース',q:'「'+txt+'」について、みんなはどう思う？',sub:'賛成？ 反対？ 自分の生活にどう関係する？'})};
 function fitAllCards(){
  for(const el of document.querySelectorAll('.tileQuestion')) layoutQuestion(el);
 }
 let cardResizeFrame=0;
 function refreshQuestionLayout(){
  if(cardResizeFrame) cancelAnimationFrame(cardResizeFrame);
- cardResizeFrame=requestAnimationFrame(()=>{cardResizeFrame=0;fitAllCards()});
+ cardResizeFrame=requestAnimationFrame(()=>{cardResizeFrame=0;fitAllCards();if(!$('overlay').hidden)layoutQuestion($('question'));});
 }
 window.addEventListener('resize',refreshQuestionLayout);
 if(document.fonts?.ready)document.fonts.ready.then(refreshQuestionLayout);
