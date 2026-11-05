@@ -3,10 +3,22 @@ function deepQuestions(t){return t.talk||[t.sub||"理由を聞かせて。","具
 const $=id=>document.getElementById(id);const KEY='otoko-talk-retro-v18';let seen=[];try{seen=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{}// v41: allow newly replaced topics to appear even if their old IDs were seen.
 try{const migrationKey='mtq-v41-life-migrated';if(localStorage.getItem(migrationKey)!=='yes'){const changedIds=new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 29, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 303, 330, 331, 461, 590, 591, 592, 593, 594, 595, 638, 644]);seen=seen.filter(id=>!changedIds.has(id));localStorage.setItem(KEY,JSON.stringify(seen));localStorage.setItem(migrationKey,'yes');}}catch{}
 let batch=[];let active=null;let hiddenNo=0;const CATS=['すべて','人生観','ニュース','平成・思い出','究極の選択','恋愛・人生','ちょいエロ','男4人の本音','4人の新企画','もし◯◯なら誰？','大人の本音','経済・お金・物価','政治・社会','AI・科学・未来','話題のニュース','仕事・暮らし','地元・幼なじみ','恋愛・結婚の本音','ディベート','友達なら聞きたい15問'];const names=['たけ','かず','たろう','つよし'];function allowed(){let cat=$('category').value;return DATA.filter(t=>(cat==='すべて'||t.cat===cat))}function save(){try{localStorage.setItem(KEY,JSON.stringify(seen.slice(-645)))}catch{}}function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}// 同じ6枚にジャンルや近い話題が重ならないようにする。
-// v42: four cards on an iPhone-sized viewport; six on tablets/desktops.
-// A short, touch-enabled landscape phone also uses the 2 x 2 mobile layout.
-const PHONE_CARD_QUERY='(max-width: 600px) and (orientation: portrait)';
-function cardsPerBatch(){return window.matchMedia(PHONE_CARD_QUERY).matches?4:6;}
+// v45: The number of cards and the grid MUST use one shared phone-mode state.
+// On iPhone, portrait (and landscape) always uses four cards in a 2 x 2 grid.
+// Viewport width fallback covers iPhone browsers that obscure their user agent.
+const PHONE_CARD_QUERY='(max-width: 600px)';
+function isPhoneLayout(){
+  const ua=navigator.userAgent||'';
+  const mobileIdentity=/iPhone|iPod|Android.*Mobile/i.test(ua)||navigator.userAgentData?.mobile===true;
+  const narrowViewport=window.matchMedia(PHONE_CARD_QUERY).matches ||
+    (document.documentElement.clientWidth>0 && document.documentElement.clientWidth<=600);
+  return mobileIdentity||narrowViewport;
+}
+function cardsPerBatch(){
+  const mobile=isPhoneLayout();
+  document.documentElement.classList.toggle('mtq-phone-layout',mobile);
+  return mobile?4:6;
+}
 const THEME_GROUPS={
  '人生観':'人生観',
  'ニュース':'ニュース・社会','話題のニュース':'ニュース・社会','政治・社会':'ニュース・社会',

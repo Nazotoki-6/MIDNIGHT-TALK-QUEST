@@ -575,7 +575,8 @@ html { -webkit-text-size-adjust:100%; }
 }
 
 
-/* v44: update notice shown only when a new version is detected */
+/* v46: The classic v42 home remains unchanged. Update notice is hidden by default. */
+ shown only when a new version is detected */
 /* Only shown when an updated app shell becomes available on HTTPS/PWA. */
 .update-banner[hidden],.update-success[hidden] {display:none!important;}
 .update-banner {
@@ -601,3 +602,9 @@ html { -webkit-text-size-adjust:100%; }
   box-shadow:0 6px 20px #0009;font-size:13px;max-width:90vw;
 }
 
+
+
+/* v46: force four cards into a 2x2 grid on an iPhone even if Safari reports
+   a wider viewport. Normal-width phones keep the exact original v42 CSS. */
+html.mtq-phone-layout #cards.cards {grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-flow:row!important;}
+.build-label{font-size:10px;letter-spacing:.04em;color:#a9b8d6;opacity:.75;}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'midnight-talk-quest-v44-classic-home-645-20261105';
+const CACHE_NAME = 'midnight-talk-quest-v46-v42-home-645-20261105';
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -23,10 +23,25 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
  const request=event.request;
  if(request.method!=='GET'||new URL(request.url).origin!==self.location.origin) return;
- event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => {
-   if(response.ok) { const copy=response.clone(); caches.open(CACHE_NAME).then(cache=>cache.put(request,copy)); }
-   return response;
- })));
+ const pathname=new URL(request.url).pathname;
+ const codeFile=/\/(?:index\.html|script\.js|style\.css|manifest\.webmanifest)$/.test(pathname);
+ if(request.mode==='navigate' || codeFile) {
+  // Online-first for app pages and code; offline falls back to the installed shell.
+  event.respondWith(fetch(request).then(response=>{
+    if(response.ok) {
+      const copy=response.clone();
+      event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.put(request,copy)));
+    }
+    return response;
+  }).catch(async()=>{
+    return (await caches.match(request)) || (await caches.match('./index.html')) || Response.error();
+  }));
+ } else {
+  event.respondWith(caches.match(request).then(cached => cached || fetch(request).then(response => {
+    if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.put(request,copy)));}
+    return response;
+  })));
+ }
 });
 
 self.addEventListener('message', event => {
