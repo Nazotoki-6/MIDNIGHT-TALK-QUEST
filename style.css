@@ -527,3 +527,77 @@ html { -webkit-text-size-adjust:100%; }
  .topic-tile .tileQuestion{font-size:clamp(18px,4.6vw,21px)!important;line-height:1.55!important;}
  .reveal h2#question{font-size:clamp(21px,5.4vw,27px)!important;line-height:1.54!important;}
 }
+
+/* v42: iPhone four-card layout (2 columns x 2 rows).
+   iPad/tablet still displays 6 cards with the v35 3x2 / 2x3 rules. */
+@media (max-width:600px), (max-height:500px) and (pointer:coarse) {
+  .cards {
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    align-items:stretch!important;
+    gap:clamp(8px,2.4vw,12px)!important;
+    width:100%!important;
+  }
+  .topic-tile,.topic-tile:nth-child(n) {
+    box-sizing:border-box!important;
+    min-width:0!important;
+    width:100%!important;
+    min-height:204px!important;
+    height:auto!important;
+    padding:11px 7px 10px!important;
+    gap:7px!important;
+  }
+  .topic-tile .tileQuestion {
+    font-size:clamp(13px,3.55vw,15.5px)!important;
+    line-height:1.47!important;
+    letter-spacing:-.035em!important;
+    overflow-wrap:break-word!important;
+    word-break:normal!important;
+    text-wrap:pretty!important;
+    -webkit-text-stroke:.35px #101527!important;
+    text-shadow:1px 1px 0 #080e1d,2px 2px 0 #32738c!important;
+  }
+  .topic-tile .tileCategory {
+    font-size:10px!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    line-height:1.25!important;
+    padding:4px 5px!important;
+  }
+  .topic-tile .tileNo {font-size:10px!important;}
+  .topic-tile .tileFoot {font-size:9px!important;padding:4px 5px!important;}
+}
+@media (max-width:360px) {
+  .cards{gap:7px!important;}
+  .topic-tile,.topic-tile:nth-child(n){padding:10px 5px!important;}
+  .topic-tile .tileQuestion{font-size:12.5px!important;}
+}
+
+
+/* v44: update notice shown only when a new version is detected */
+/* Only shown when an updated app shell becomes available on HTTPS/PWA. */
+.update-banner[hidden],.update-success[hidden] {display:none!important;}
+.update-banner {
+  position:fixed;z-index:50000;inset:auto 12px calc(12px + env(safe-area-inset-bottom)) 12px;
+  max-width:530px;margin-inline:auto;padding:15px 17px;
+  border:2px solid #7ce0d1;border-radius:14px;
+  background:#112140;color:#fffdf3;
+  box-shadow:0 6px 0 #071023,0 12px 34px rgba(0,0,0,.7);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+.update-banner strong {display:block;font-size:16px;line-height:1.5;margin-bottom:4px;}
+.update-banner p {margin:0 0 12px;font-size:13px;line-height:1.5;color:#deebf4;}
+.update-banner .update-actions{display:flex;flex-wrap:wrap;gap:8px;}
+.update-banner button {appearance:none;-webkit-appearance:none;border:2px solid #061b2f;
+  background:#85efce;color:#071523;border-radius:8px;padding:10px 16px;
+  font-weight:900;cursor:pointer;font-size:15px;min-height:44px;}
+.update-banner button.secondary {background:#273759;border-color:#547294;color:white;}
+.update-banner button:focus-visible {outline:3px solid #ffdd87;outline-offset:2px;}
+.update-success {
+  position:fixed;top:calc(9px + env(safe-area-inset-top));right:10px;
+  z-index:50000;padding:10px 13px;background:#153f38;color:#fff;
+  border:1px solid #91f2b0;border-radius:10px;
+  box-shadow:0 6px 20px #0009;font-size:13px;max-width:90vw;
+}
+

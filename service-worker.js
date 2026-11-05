@@ -1,4 +1,4 @@
-const CACHE_NAME = 'midnight-talk-quest-v40-lounge-bgm-645-20261102';
+const CACHE_NAME = 'midnight-talk-quest-v44-classic-home-645-20261105';
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -27,4 +27,8 @@ self.addEventListener('fetch', event => {
    if(response.ok) { const copy=response.clone(); caches.open(CACHE_NAME).then(cache=>cache.put(request,copy)); }
    return response;
  })));
+});
+
+self.addEventListener('message', event => {
+ if(event.data && event.data.type==='SKIP_WAITING') self.skipWaiting();
 });
