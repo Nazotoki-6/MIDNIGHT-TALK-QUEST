@@ -2,7 +2,7 @@
   "id": "./",
   "name": "MIDNIGHT TALK QUEST",
   "short_name": "TALK QUEST",
-  "description": "幼なじみ4人のための会話お題カード。全645問・深夜ラウンジBGM。",
+  "description": "幼なじみ4人のための会話お題カード。全645問。iPhoneの日本語改行を改善。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

@@ -60,109 +60,145 @@ function newBatch(){
  }
  render();save();
 }
-// v38: Japanese soft-wrap. No inserted <br>, fixed lines, or nowrap line spans.
-// On browsers without Chrome's auto-phrase (such as iPad Safari), add
-// non-displaying break opportunities at natural Japanese word-group boundaries.
-const jpWordSegmenter = (typeof Intl !== 'undefined' && Intl.Segmenter)
-  ? new Intl.Segmenter('ja',{granularity:'word'}) : null;
-const NO_BREAK_BEFORE = /^(?:[、。！？?!，．：:；;）】」』〉》％%]|は$|が$|を$|に$|へ$|で$|と$|も$|の$|や$|か$|ね$|よ$|ぞ$|さ$|な$|わ$|ば$|から$|まで$|より$|でも$|って$|こそ$|だけ$|ほど$|など$|くらい$|ぐらい$|には$|では$|とは$|た$|て$|だ$|い$|ます$|ました$|ません$|ない$|なる$|なっ$|れる$|られる$|らしい$|たい$|たら$|なら$|する$|した$|して$|できる$|できた$|できない$|けど$|ので$|です$|かも$)/u;
-const OPENING_BRACKET = /[（【「『〈《(\[]$/u;
-const PROTECTED_TERMS = [
- '小学生','中学生','高校生','大学生','社会人','学生時代','高校時代','学生生活','仕事選び','仕事仲間','幼なじみ','4人','2人旅','好きな人','新サービス','新商品','プロ雀士','一発ツモ','アガれる','打ち筋','点数計算','役満','ラス目','オーラス','国士無双','三暗刻','四暗刻','満貫','跳満',
- '恋愛観','結婚観','結婚生活','夫婦生活','新婚生活','価値観','金銭感覚','身体の相性','プライバシー','ボードゲーム','キャッシュレス','リメイク','家族旅行','人間関係','初デート','恋人同士','夫婦関係','自動運転','人工知能','一泊旅行','無人島生活','共同生活','旅行先','共同責任','相部屋','相手の立場','今の自分','一人暮らし','恋愛相談番組','どんなところ','何を優先して'
+// v50 iPhone readability: keep short Japanese word groups intact.
+// No fixed line breaks and no forced per-character wrapping in question text.
+const mtqSegmenter = typeof Intl !== 'undefined' && Intl.Segmenter
+  ? new Intl.Segmenter('ja', {granularity:'word'}) : null;
+const MTQ_ENDING = /^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|ぞ|さ|な|わ|ば|から|まで|ほど|より|だけ|こそ|でも|なら|って|ので|けど|には|では|とは|たり|ない|なく|なる|たら|れば|れる|られる|たい|です|ます|ました|ません|する|した|して|できる|できた|できない|とき|こと|もの|ため|よう|くらい|ぐらい)$/u;
+const MTQ_PUNCTUATION = /^[、。，．！？?!:：;；）】」』〉》％%]$/u;
+const MTQ_OPEN = /^[（【「『〈《(]$/u;
+const MTQ_HIRAGANA = /^[ぁ-んー]{1,7}$/u;
+const MTQ_KANJI = /^[一-龯々〆ヵヶ]{1,8}$/u;
+const MTQ_KEEP_TERMS = [
+ '人生観','金銭感覚','生き方','好きな人','家族旅行','恋愛観','結婚観','結婚生活',
+ '小学生','中学生','高校生','大学生','学生時代','平成時代','大人になって','幼なじみ',
+ '新サービス','ボードゲーム','オーラス','リメイク','現金払い','クレジットカード',
+ 'プロ雀士','アルバイト','キャッシュレス','ルームシェア','コミュニケーション',
+ 'できなかった','変わった','変わらない','思い出','どちらか','どんなこと',
+ '一生に一度','友達同士','自分自身','他人の評価','仕事仲間','身体の相性'
 ];
-function safeBreakPositions(text){
- const prohibited=new Set();
- const forbid=(start,end)=>{for(let i=start+1;i<end;i++)prohibited.add(i);};
- for(const word of PROTECTED_TERMS){let at=0;while((at=text.indexOf(word,at))!==-1){forbid(at,at+word.length);at+=word.length;}}
- const rules=[
-  /[一-龯々]{1,10}[ぁ-ん]{1,12}/gu, // 変わった, 信じられる
-  /[一-龯々]{2,16}/gu,         // compound nouns
-  /[ァ-ヶー]{2,24}/gu,          // katakana
-  /[一-龯々]{1,9}[ァ-ヶー]{2,14}/gu,
-  /[ァ-ヶー]{1,16}[ぁ-ん]{1,12}/gu, // アガれる
-  /\d+(?:,\d{3})*(?:(?:億|万|千)?(?:円|人|歳|年|月|日|時間|分|回|枚|点|泊|番|つ|個|本|倍|代|名))+/gu,
- ];
- for(const regex of rules) for(const m of text.matchAll(regex)) forbid(m.index,m.index+m[0].length);
- return prohibited;
+function mtqBasicTokens(text){
+  if(!mtqSegmenter){
+    return text.match(/(?:[一-龯々〆ヵヶ]+[ぁ-んー]*|[ァ-ヶー]+|[ぁ-んー]+|[a-zA-Z0-9]+|.)/gu) || [text];
+  }
+  return Array.from(mtqSegmenter.segment(text),x=>x.segment);
 }
-function addNaturalBreaks(text){
- if(!text) return text;
- if(!jpWordSegmenter) return text; // normal Japanese wrapping if no Segmenter
- const segments=[...jpWordSegmenter.segment(text)];
- const forbidden=safeBreakPositions(text);
- const breakAt=new Set();
- for(let i=0;i<segments.length-1;i++){
-  const left=segments[i].segment,right=segments[i+1].segment;
-  const at=segments[i+1].index;
-  if(forbidden.has(at))continue;
-  if(OPENING_BRACKET.test(left))continue;
-  if(NO_BREAK_BEFORE.test(right))continue;
-  if(/^\s+$/u.test(right))continue;
-  if(/[。、！？?!，．：:；;]$/u.test(left)){breakAt.add(at);continue;}
-  if(/[\s]$/u.test(left)){breakAt.add(at);continue;}
-  // Short fragments ending in kana are usually inflections / clitics.
-  // Keep them attached to nearby words, except for grammatical particles.
-  if(/^[ぁ-ん]{1,2}$/u.test(left)&&!/^(?:は|が|を|に|へ|で|と|も|の|や|か|ね|よ|から|まで|ば)$/u.test(left))continue;
-  // Never leave single kanji standing on its own at the end of a line.
-  if(/^[一-龯々]$/u.test(left))continue;
-  breakAt.add(at);
+function mtqWordUnits(text){
+  if(!text) return [];
+  const tokens=mtqBasicTokens(text), result=[];
+  for(const token of tokens){
+    const last=result.length-1,prev=last>=0?result[last]:'';
+    if(last>=0 && (
+      MTQ_PUNCTUATION.test(token) ||
+      (MTQ_HIRAGANA.test(token) && !/[、。！？?!，．：:；;]$/u.test(prev) &&
+       (!/(?:は|が|を|に|で|と|へ|の)$/u.test(prev) || !/^[ぁ-んー]{1,2}$/u.test(token))) ||
+      (/^\d+$/.test(prev) && /^(?:円|人|歳|年|月|日|時間|分|回|枚|点|泊|つ|個|本|倍|代|名|億|万|千|週間|年間)$/.test(token)) ||
+      (/^[一-龯々]$/u.test(prev) && /^[ァ-ヶー]+$/u.test(token)) ||
+      (/[一-龯々]$/u.test(prev)&& /^[一-龯々]$/u.test(token)) ||
+      MTQ_ENDING.test(token) ||
+      (MTQ_KANJI.test(token)&&MTQ_KANJI.test(prev)&&prev.length+token.length<=7) ||
+      MTQ_OPEN.test(prev) ||
+      (token===' ' && !prev.endsWith(' '))
+    )) result[last]+=token;
+    else result.push(token);
+  }
+  // Join numbers and their counters even when Intl.Segmenter splits them.
+  for(let i=0;i<result.length-1;i++){
+    if(/^[0-9][0-9,]*$/.test(result[i]) &&
+       /^(?:億円|万円|千円|円|人|歳|年|月|日|時間|分|回|枚|点|泊|個|本|倍|代|名|週間|年間|億|万|千)/u.test(result[i+1])){
+      result[i]+=result[i+1]; result.splice(i+1,1);i--;
+    }
+  }
+  // A middle dot belongs with adjacent words, never as a lonely line.
+  for(let i=0;i<result.length;i++){
+    if(result[i]==='・' && i+1<result.length){
+      if(i>0 && (result[i-1]+result[i]+result[i+1]).length<=8){
+        result.splice(i-1,3,result[i-1]+result[i]+result[i+1]);i=Math.max(-1,i-2);
+      }else{
+        result.splice(i,2,'・'+result[i+1]);i--;
+      }
+    }
+  }
+  // Never leave an opening bracket or quotation mark at the end of a line.
+  for(let i=0;i<result.length-1;i++){
+    if(MTQ_OPEN.test(result[i].slice(-1))){result[i]+=result[i+1];result.splice(i+1,1);i--;}
+  }
+  // Keep existing proper expressions and common compound nouns as one unit.
+  // This replaces character-count chunking used in older versions.
+  for(const term of MTQ_KEEP_TERMS){
+    const joined=result.join('');let pos=0;
+    while((pos=joined.indexOf(term,pos))!==-1){
+      let a=0,lo=-1,hi=-1;
+      for(let i=0;i<result.length;i++){
+        const next=a+result[i].length;
+        if(lo<0 && pos>=a&&pos<next)lo=i;
+        if(pos+term.length>a && pos+term.length<=next){hi=i;break;}
+        a=next;
+      }
+      if(lo>=0&&hi>lo){const merged=result.slice(lo,hi+1).join('');
+        if(merged.length<=9)result.splice(lo,hi-lo+1,merged);
+      }
+      pos+=term.length;
+    }
+  }
+  return result;
+}
+function mtqGetTextWidth(text, el){
+ const style=getComputedStyle(el), measure=mtqGetTextWidth.canvas||(mtqGetTextWidth.canvas=document.createElement('canvas'));
+ const ctx=measure.getContext('2d');
+ ctx.font=`${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+ const spacing=parseFloat(style.letterSpacing)||0;
+ return ctx.measureText(text).width+Math.max(0,[...text].length-1)*spacing;
+}
+function mtqSplitLongUnit(unit, el, maxWidth){
+ if(mtqGetTextWidth(unit,el)<=maxWidth)return [unit];
+ // Prefer breaking at language segment boundaries, never arbitrarily every N characters.
+ const segments=mtqBasicTokens(unit), out=[];let current='';
+ for(const part of segments){
+   if(current && mtqGetTextWidth(current+part,el)>maxWidth){
+     if(!MTQ_PUNCTUATION.test(part)&&!MTQ_HIRAGANA.test(part) && !MTQ_ENDING.test(part)){
+        out.push(current);current=part;continue;
+     }
+     // grammatical ending should travel with its word where possible
+     if(current.length>3){out.push(current);current=part;continue;}
+   }
+   current+=part;
  }
- // Editorial fallback break opportunities for long clauses that would
- // otherwise become one unbreakable unit, verified against every topic.
- const EXTRA_SOFT_AFTER = {
-   "親友にしか話せない悩みはある？":["親友にしか", "話せない"],
-   "最近新しく好きになったものは？":["最近", "新しく"],
-   "映画のラブシーンでつい笑ってしまう？":["映画の", "ラブシーンで"],
-   "恋人の意外な一面にときめくのはどんな時？":["恋人の", "意外な一面に", "ときめくのは"],
-   "他人の評価を以前ほど気にしなくなったのは、いつ頃から？":["他人の評価を", "以前ほど", "気にしなくなったのは、"],
-   "年を重ねるほど増えてほしいものと、減ってほしいものは何？":["年を重ねるほど", "増えてほしいものと、", "減ってほしいものは"],
-   "世界中どこでも暮らせるとしても、今の地元に残りたい？":["世界中どこでも", "暮らせるとしても、", "今の地元に"],
-   "性的な相性と性格の相性、長く付き合ううえでどう考える？":["性的な相性と", "性格の相性、", "長く付き合ううえで"],
-   "親密な関係で、相手が嫌がっていることにどう気づく？":["親密な関係で、", "相手が", "嫌がっていることに"],
-   "ゴミを減らすために、負担なく続けられそうな行動は？":["ゴミを減らすために、", "負担なく", "続けられそうな"],
-   "懐かしいゲームは、リメイクより原作のままがいい？":["懐かしいゲームは、", "リメイクより", "原作のままが"],
-   '友達にしてもらって嬉しかったことは？':['もらって','嬉しかった'],
-   '最近ちょっとだけ自慢したいことは？':['ちょっとだけ','自慢したい'],
-   'さりげないボディタッチはどこまでアリ？':['さりげない','ボディタッチは'],
-   '1年だけルームシェアするなら誰と暮らす？':['1年だけ','ルームシェアするなら'],
-   '4人で一度もしたことのない挑戦をするなら誰が先陣を切る？':['4人で','一度もしたことのない','挑戦をするなら','誰が'],
-   '大人になってから、恋愛で恥ずかしくて言えなかったことは？':['大人になってから、','恋愛で','恥ずかしくて'],
-   '恋人に言われて一番恥ずかしかった褒め言葉は？':['恋人に言われて','一番','恥ずかしかった'],
-   '10年後の自分の家庭や恋愛、友人関係はどうなっていてほしい？':['10年後の','自分の家庭や恋愛、','友人関係は'],
-   '恋人と性的な好みが違うとき、何を優先して折り合いをつける？':['恋人と','性的な好みが違うとき、','何を優先して'],
- };
- for(const term of EXTRA_SOFT_AFTER[text]||[]){
-   const at=text.indexOf(term);
-   if(at>=0)breakAt.add(at+term.length);
- }
- // Quoted speech plus its following particle belongs together.
- for(const m of text.matchAll(/[」』](?:と|の|を|が|は)/gu)){
-   const at=m.index+m[0].length;
-   if(text[at]!=='は')breakAt.add(at);
- }
- // A quoted phrase may start a natural new line; never break just after its opening mark.
- for(const m of text.matchAll(/[「『]/gu))if(m.index>0)breakAt.add(m.index);
- // A break opportunity isn't a forced new line; the browser decides
- // according to the actual iPad font, browser zoom, and card width.
- let out='';
- for(let i=0;i<text.length;i++){
-  if(breakAt.has(i))out+='\u200b';
-  out+=text[i];
-  // U+2060 prevents Safari from separating closing quotes from
-  // the following case particle despite kinsoku rules.
-  if(/[」』]/u.test(text[i]) && /^[とのをはがで]$/u.test(text[i+1]||''))out+='\u2060';
-  if(text[i]==='の' && text[i+1]==='は' && /[」』]/u.test(text[i-1]||''))out+='\u2060';
+ if(current)out.push(current);
+ if(out.length===1 || out.some(p=>mtqGetTextWidth(p,el)>maxWidth)){
+  // Extremely long proper nouns are rendered at a smaller size instead of spilling off screen.
+  return [unit];
  }
  return out;
 }
-function setReadableQuestion(el, topic){
- el.dataset.originalQuestion=topic.q;
- el.textContent=addNaturalBreaks(topic.q);
+function setReadableQuestion(el,topic){
+  el.dataset.originalQuestion=topic.q;
+  el.textContent=topic.q;
 }
 function layoutQuestion(el){
- if(!el.dataset.originalQuestion) return;
- el.textContent=addNaturalBreaks(el.dataset.originalQuestion);
+  const text=el.dataset.originalQuestion;
+  if(!text)return;
+  el.replaceChildren();
+  el.style.removeProperty('--mtq-question-font-size');
+  // Measure using the actual rendered card width (including the iPhone safe-area).
+  const width=Math.max(65,el.getBoundingClientRect().width-3);
+  const words=mtqWordUnits(text);
+  // First split long expressions at natural word boundaries; avoid shrinking all text.
+  let pieces=words.flatMap(x=>mtqSplitLongUnit(x,el,width));
+  const longest=Math.max(0,...pieces.map(x=>mtqGetTextWidth(x,el)));
+  if(longest>width){
+    const computed=parseFloat(getComputedStyle(el).fontSize);
+    const minSize=el.id==='question'?18:11.5;
+    const target=Math.max(minSize,computed*(width/longest)*.97);
+    el.style.setProperty('--mtq-question-font-size',target.toFixed(2)+'px');
+  }
+  pieces=words.flatMap(x=>mtqSplitLongUnit(x,el,width));
+  const fragment=document.createDocumentFragment();
+  pieces.forEach(part=>{
+    const span=document.createElement('span');span.className='mtq-word-unit';span.textContent=part;
+    fragment.appendChild(span);
+  });
+  el.appendChild(fragment);
 }
 
 function render(){

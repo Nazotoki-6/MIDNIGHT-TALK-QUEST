@@ -1,10 +1,14 @@
-const CACHE_NAME = 'midnight-talk-quest-v46-v42-home-645-20261105';
+const CACHE_NAME = 'midnight-talk-quest-v50-original-pixel-banner-645-20261105';
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./index.html?v=49",
   "./style.css",
+  "./style.css?v=49",
   "./script.js",
+  "./script.js?v=49",
   "./manifest.webmanifest",
+  "./manifest.webmanifest?v=49",
   "./assets/icon-192.png",
   "./assets/icon-512.png",
   "./assets/tsuyoshi.png",
@@ -27,7 +31,7 @@ self.addEventListener('fetch', event => {
  const codeFile=/\/(?:index\.html|script\.js|style\.css|manifest\.webmanifest)$/.test(pathname);
  if(request.mode==='navigate' || codeFile) {
   // Online-first for app pages and code; offline falls back to the installed shell.
-  event.respondWith(fetch(request).then(response=>{
+  event.respondWith(fetch(request,{cache:"no-store"}).then(response=>{
     if(response.ok) {
       const copy=response.clone();
       event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.put(request,copy)));
